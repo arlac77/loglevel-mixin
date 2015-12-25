@@ -53,7 +53,7 @@ install
 With [npm](http://npmjs.org) do:
 
 ```
-npm install uti
+npm install loglevel-mixin
 ```
 
 license
