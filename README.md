@@ -22,6 +22,28 @@ someObject.info( level => "my info message")
 someObject.logLevel = 'error';
 
 someObject.info( level => "my info message (not reported)")
+```
+
+for es6 classes to
+------------------
+
+```
+const llm = require(`loglevel-mixin`);
+
+class BaseClass {
+  log(level, message) { console.log(`${level} ${message}`); } }
+}
+
+llm.defineLoggerMethods(BaseClass.prototype, llm.defaultLogLevels);
+class LoggingEnabledBaseClass extends llm.LogLevelMixin(BaseClass, llm.defaultLogLevels,
+  llm.defaultLogLevels['info']) {}
+
+const someObject = new LoggingEnabledBaseClass();
+someObject.info( level => "my info message")
+someObject.logLevel = 'error';
+
+someObject.info( level => "my info message (not reported)")
+
 
 ```
 
