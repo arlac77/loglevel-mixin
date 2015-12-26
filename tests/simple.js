@@ -15,12 +15,7 @@ describe('logging', function () {
   let theValue = 0;
   let theLevel = "none";
 
-  const someObject = {
-    log(level, args) {
-      theLevel = level;
-      theValue = args;
-    }
-  };
+  const someObject = {};
   const someOtherObject = {
     log(level, args) {
       theLevel = level;
@@ -29,7 +24,10 @@ describe('logging', function () {
   };
 
 
-  llm.defineLoggerMethods(someObject, llm.defaultLogLevels);
+  llm.defineLoggerMethods(someObject, llm.defaultLogLevels, function (level, message) {
+    theLevel = level;
+    theValue = message;
+  });
   llm.defineLogLevelProperties(someObject, llm.defaultLogLevels, llm.defaultLogLevels.info);
 
   llm.defineLoggerMethods(someOtherObject, llm.defaultLogLevels);

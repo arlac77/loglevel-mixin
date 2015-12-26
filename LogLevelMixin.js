@@ -27,9 +27,10 @@ function declareLevels(list) {
  * For each loglevel a methos will be created.
  * info()
  * @param {Object} target object where to assign properties tp
- * @param {Function} theFunction The function to be added under the loglevel name.
+ * @param {Function} theFunction Optional function to be added under the loglevel name.
  *        This function will only be called if the current loglevel is greater equal
- *        the log level of the called logging function
+ *        the log level of the called logging function.
+ *        By default a method log(leve,message) will be used
  */
 exports.defineLoggerMethods = function (object, logLevels, theFunction) {
 
