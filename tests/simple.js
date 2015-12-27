@@ -43,7 +43,7 @@ describe('logging', function () {
       assert.equal(someObject.logLevel, "info");
     });
 
-    ['trace', 'error', 'debug', 'info'].forEach(level => {
+    ['trace', 'debug', 'error', 'notice', 'warn', 'debug', 'info'].forEach(level => {
       it(`set ${level}`, function () {
         someObject.logLevel = level;
         assert.equal(someObject.logLevel, level);

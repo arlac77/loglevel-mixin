@@ -10,22 +10,22 @@ const chai = require('chai'),
 
 const llm = require('../LogLevelMixin');
 
-describe('logging', function () {
+describe('logging with classes', function () {
 
   let theValue = 0;
   let theLevel = "none";
 
 
-  class BaseClass {
+  class BaseClass {}
+
+  llm.defineLoggerMethods(BaseClass.prototype, llm.defaultLogLevels);
+  class LoggingEnabledBaseClass extends llm.LogLevelMixin(BaseClass, llm.defaultLogLevels,
+    llm.defaultLogLevels['info']) {
     log(level, message) {
       theLevel = level;
       theValue = message;
     }
   }
-
-  llm.defineLoggerMethods(BaseClass.prototype, llm.defaultLogLevels);
-  class LoggingEnabledBaseClass extends llm.LogLevelMixin(BaseClass, llm.defaultLogLevels,
-    llm.defaultLogLevels['info']) {}
 
   const someObject = new LoggingEnabledBaseClass();
   const someOtherObject = new LoggingEnabledBaseClass();
@@ -40,7 +40,7 @@ describe('logging', function () {
       assert.equal(someObject.logLevel, "info");
     });
 
-    ['trace', 'error', 'debug', 'info'].forEach(level => {
+    ['trace', 'debug', 'error', 'notice', 'warn', 'debug', 'info'].forEach(level => {
       it(`set ${level}`, function () {
         someObject.logLevel = level;
         assert.equal(someObject.logLevel, level);
