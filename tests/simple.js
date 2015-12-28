@@ -69,7 +69,7 @@ describe('logging', function () {
       assert.equal(theLevel, 'info');
     });
     it('error passes', function () {
-      someObject.error(level => "error message");
+      someObject.error("error message");
       assert.equal(theValue, 'error message');
       assert.equal(theLevel, 'error');
     });
