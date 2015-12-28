@@ -49,11 +49,20 @@ exports.defineLoggerMethods = function (object, logLevels, theFunction) {
       value: theFunction ?
         function (providerFunction) {
           if (this.logLevelPriority >= myLevel)
-            theFunction(levelName, providerFunction(levelName));
+            if (typeof providerFunction === 'function') {
+              theFunction.call(this, levelName, providerFunction(levelName));
+            } else {
+              theFunction.call(this, levelName, providerFunction);
+            }
         } : function (providerFunction) {
           if (this.logLevelPriority >= myLevel)
-            this.log(levelName, providerFunction(levelName));
-        }
+            if (typeof providerFunction === 'function') {
+              this.log(levelName, providerFunction(levelName));
+            } else {
+              this.log(levelName, providerFunction);
+            }
+        },
+      enumerable: true
     };
   });
 
@@ -92,7 +101,7 @@ exports.LogLevelMixin = (superclass, logLevels, defaultLogLevel) => class extend
  * Declares two properties:
  *  logLevel {String} 'info','error',...
  *  logLevelPriority {Number}
- * 
+ *
  * @param {Object} properties target object where the properties will be written into
  * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
  * @param {String} defaultLogLevel the default value for the properties
