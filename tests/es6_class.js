@@ -20,7 +20,7 @@ describe('logging with classes', function () {
 
   llm.defineLoggerMethods(BaseClass.prototype, llm.defaultLogLevels);
   class LoggingEnabledBaseClass extends llm.LogLevelMixin(BaseClass, llm.defaultLogLevels,
-    llm.defaultLogLevels['info']) {
+    llm.defaultLogLevels.info) {
     log(level, message) {
       theLevel = level;
       theValue = message;
