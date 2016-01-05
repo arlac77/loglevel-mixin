@@ -8,7 +8,7 @@ Injects methods named after a set of logLevels which are only forwarding message
 usage
 =====
 
-```
+```javascript
 const llm = require(`loglevel-mixin`);
 
 let someObject = { log(level,message) { console.log(`${level} ${message}`); } };
@@ -29,7 +29,7 @@ someObject.info( level => "my info message (not reported)")
 for es6 classes to
 ------------------
 
-```
+```javascript
 const llm = require(`loglevel-mixin`);
 
 class BaseClass {
@@ -54,7 +54,7 @@ install
 
 With [npm](http://npmjs.org) do:
 
-```
+```shell
 npm install loglevel-mixin
 ```
 
