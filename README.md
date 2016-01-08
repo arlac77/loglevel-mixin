@@ -62,3 +62,7 @@ license
 =======
 
 BSD-2-Clause
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/arlac77/loglevel-mixin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
