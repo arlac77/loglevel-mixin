@@ -36,7 +36,7 @@ function declareLevels(list) {
  * @param {Function, optional} theFunction The function to be added under the loglevel name.
  *        This function will only be called if the current loglevel is greater equal
  *        the log level of the called logging function.
- *        By default a method log(leve,message) will be used
+ *        By default a method log(level,message) will be used
  */
 exports.defineLoggerMethods = function (object, logLevels, theFunction) {
 
@@ -77,7 +77,7 @@ exports.defineLoggerMethods = function (object, logLevels, theFunction) {
  * This is method if for classes
  * @param {Object} properties target object where the properties will be written into
  * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
- * @param {String} defaultLogLevel the default value for the properties
+ * @param {String} defaultLogLevel the default value for the logLevel property
  */
 exports.LogLevelMixin = (superclass, logLevels, defaultLogLevel) => class extends superclass {
   constructor() {
@@ -88,6 +88,11 @@ exports.LogLevelMixin = (superclass, logLevels, defaultLogLevel) => class extend
   get logLevel() {
     return this._logLevel.name;
   }
+
+  /**
+   * Set the logging level
+   * @param {String} level
+   */
   set logLevel(level) {
     this._logLevel = logLevels[level] || defaultLogLevel;
   }
