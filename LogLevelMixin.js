@@ -133,3 +133,18 @@ exports.defineLogLevelProperties = function (object, logLevels, defaultLogLevel)
 
   Object.defineProperties(object, properties);
 };
+
+
+exports.makeLogEvent = function (level, arg, args) {
+  const logevent = {
+    "timestamp": Date.now(),
+    "level": level
+  };
+
+  if (typeof arg === 'string') {
+    logevent.message = arg;
+    return Object.assign(logevent, args);
+  } else {
+    return Object.assign(logevent, arg, args);
+  }
+};
