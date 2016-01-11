@@ -38,7 +38,7 @@ someObject.logLevel = 'error';
 someObject.info( level => "my info message (not reported)")
 ```
 
-for es6 classes to
+works for es6 classes to
 ------------------
 
 ```javascript
