@@ -3,9 +3,9 @@
   "description": "mixin to declare logging methods named after a set of log levels",
   "main": "LogLevelMixin.js",
   "scripts": {
-    "cover": "node --harmony ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests",
-    "doc": "./node_modules/.bin/jsdoc index.js",
-    "test": "mocha --harmony_shipping tests/*.js",
+    "cover": "node ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests/*_test.js",
+    "doc": "jsdoc lib/*.js",
+    "test": "mocha tests/*_test.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -13,7 +13,7 @@
     "url": "https://github.com/arlac77/loglevel-mixin.git"
   },
   "engines": {
-    "node": ">=4.2.1"
+    "node": ">=5"
   },
   "devDependencies": {
     "chai": "3.5.0",
@@ -24,7 +24,7 @@
     "istanbul": "0.4.2",
     "jsdoc": "3.4.0",
     "mocha": "2.4.5",
-    "semantic-release": "6.0.3"
+    "semantic-release": "6.2.0"
   },
   "keywords": [
     "loglevel"
