@@ -135,6 +135,13 @@ exports.defineLogLevelProperties = function (object, logLevels, defaultLogLevel)
 };
 
 
+/**
+ * Aggregates values into a log event
+ * @param {String} level
+ * @param {String|Object} arg original log message - level and timestamp may be overwritten
+ * @param {Object} args additional values to be merged into the final log event - values have precedence
+ * @return {Object} suitable for log event processing
+ */
 exports.makeLogEvent = function (level, arg, args) {
   const logevent = {
     "timestamp": Date.now(),
