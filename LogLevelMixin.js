@@ -117,16 +117,16 @@ exports.defineLogLevelProperties = function (object, logLevels, defaultLogLevel)
   let logLevel = defaultLogLevel;
 
   properties.logLevel = {
-    get: function () {
-      return logLevel.name;
-    },
-    set: function (level) {
-      logLevel = logLevels[level] || defaultLogLevel;
-    }
+    get() {
+        return logLevel.name;
+      },
+      set(level) {
+        logLevel = logLevels[level] || defaultLogLevel;
+      }
   };
 
   properties.logLevelPriority = {
-    get: function () {
+    get() {
       return logLevel.priority;
     }
   };
