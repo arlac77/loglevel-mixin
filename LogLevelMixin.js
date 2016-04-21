@@ -155,9 +155,6 @@ exports.makeLogEvent = function (level, arg, args) {
     if (arg.stack) {
       logevent.stack = arg.stack.split(/\n/).map(l => l.trim());
     }
-    logevent.message = arg.message;
-    logevent.fileName = arg.fileName;
-    logevent.lineNumber = arg.lineNumber;
     return Object.assign(logevent, arg, args);
   } else {
     return Object.assign(logevent, arg, args);
