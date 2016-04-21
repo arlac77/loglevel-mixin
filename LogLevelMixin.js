@@ -1,6 +1,6 @@
 /* jslint node: true, esnext: true */
 
-"use strict";
+'use strict';
 
 const logLevels = declareLevels(['trace', 'debug', 'info', 'notice', 'warn', 'error', 'crit', 'alert']);
 
@@ -144,13 +144,21 @@ exports.defineLogLevelProperties = function (object, logLevels, defaultLogLevel)
  */
 exports.makeLogEvent = function (level, arg, args) {
   const logevent = {
-    "timestamp": Date.now(),
-    "level": level
+    timestamp: Date.now(),
+    level: level
   };
 
   if (typeof arg === 'string') {
     logevent.message = arg;
     return Object.assign(logevent, args);
+  } else if (arg instanceof Error) {
+    if (arg.stack) {
+      logevent.stack = arg.stack.split(/\n/).map(l => l.trim());
+    }
+    logevent.message = arg.message;
+    logevent.fileName = arg.fileName;
+    logevent.lineNumber = arg.lineNumber;
+    return Object.assign(logevent, arg, args);
   } else {
     return Object.assign(logevent, arg, args);
   }
