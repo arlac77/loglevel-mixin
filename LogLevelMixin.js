@@ -151,12 +151,13 @@ exports.makeLogEvent = function (level, arg, args) {
   if (typeof arg === 'string') {
     logevent.message = arg;
     return Object.assign(logevent, args);
-  } else if (arg instanceof Error) {
-    if (arg.stack) {
-      logevent.stack = arg.stack.split(/\n/).map(l => l.trim());
-    }
-    return Object.assign(logevent, arg, args);
   } else {
+    if (arg instanceof Error && arg.stack) {
+      logevent.stack = arg.stack.split(/\n/).map(l => l.trim());
+    } else if (arg.error instanceof Error && arg.error.stack) {
+      logevent.stack = arg.error.stack.split(/\n/).map(l => l.trim());
+    }
+
     return Object.assign(logevent, arg, args);
   }
 };
