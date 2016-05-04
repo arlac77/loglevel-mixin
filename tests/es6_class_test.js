@@ -1,7 +1,7 @@
 /* global describe, it*/
 /* jslint node: true, esnext: true */
 
-"use strict";
+'use strict';
 
 const chai = require('chai'),
   assert = chai.assert,
@@ -10,11 +10,10 @@ const chai = require('chai'),
 
 const llm = require('../LogLevelMixin');
 
-describe('logging with classes', function () {
+describe('logging with classes', () => {
 
   let theValue = 0;
-  let theLevel = "none";
-
+  let theLevel = 'none';
 
   class BaseClass {}
 
@@ -32,12 +31,12 @@ describe('logging with classes', function () {
 
   describe('levels', function () {
     it('default info', function () {
-      assert.equal(someObject.logLevel, "info");
+      assert.equal(someObject.logLevel, 'info');
     });
 
     it('set invalid fallback info', function () {
-      someObject.logLevel = "unknown";
-      assert.equal(someObject.logLevel, "info");
+      someObject.logLevel = 'unknown';
+      assert.equal(someObject.logLevel, 'info');
     });
 
     ['trace', 'debug', 'error', 'notice', 'warn', 'debug', 'info'].forEach(level => {
@@ -49,24 +48,24 @@ describe('logging with classes', function () {
 
     it('default info', function () {
       someOtherObject.logLevel = 'trace';
-      assert.equal(someOtherObject.logLevel, "trace");
-      assert.equal(someObject.logLevel, "info");
+      assert.equal(someOtherObject.logLevel, 'trace');
+      assert.equal(someObject.logLevel, 'info');
     });
   });
 
   describe('logging with levels', function () {
     it('info passes', function () {
-      someObject.info(level => "info message");
+      someObject.info(level => 'info message');
       assert.equal(theValue, 'info message');
       assert.equal(theLevel, 'info');
     });
     it('trace ignored', function () {
-      someObject.trace(level => "trace message");
+      someObject.trace(level => 'trace message');
       assert.equal(theValue, 'info message');
       assert.equal(theLevel, 'info');
     });
     it('error passes', function () {
-      someObject.error("error message");
+      someObject.error('error message');
       assert.equal(theValue, 'error message');
       assert.equal(theLevel, 'error');
     });
