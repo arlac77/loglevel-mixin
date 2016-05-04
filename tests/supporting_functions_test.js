@@ -18,6 +18,19 @@ describe('makeLogEvent', () => {
     it('has message', () => assert.equal(le.message, 'the message'));
   });
 
+  describe('error object', () => {
+    describe('direct', () => {
+      const le = llm.makeLogEvent('error', new Error('the error'));
+      it('has stack', () => assert.isArray(le.stack));
+    });
+    describe('indirect', () => {
+      const le = llm.makeLogEvent('error', {
+        error: new Error('the error')
+      });
+      it('has stack', () => assert.isArray(le.stack));
+    });
+  });
+
   describe('overwrite timestamp', () => {
     const le = llm.makeLogEvent('error', {
       timestamp: 1234,
