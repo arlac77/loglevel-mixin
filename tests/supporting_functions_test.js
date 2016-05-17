@@ -18,6 +18,13 @@ describe('makeLogEvent', () => {
     it('has message', () => assert.equal(le.message, 'the message'));
   });
 
+  describe('empty', () => {
+    const le = llm.makeLogEvent('error');
+    it('has timestamp', () => assert.closeTo(le.timestamp, Date.now(), 100));
+    it('has level', () => assert.equal(le.level, 'error'));
+    it('undefined message', () => assert.isUndefined(le.message));
+  });
+ 
   describe('error object', () => {
     describe('direct', () => {
       const le = llm.makeLogEvent('error', new Error('the error'));

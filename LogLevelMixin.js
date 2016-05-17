@@ -152,6 +152,10 @@ exports.makeLogEvent = function (level, arg, args) {
     logevent.message = arg;
     return Object.assign(logevent, args);
   } else {
+    if(arg === undefined) {
+      return Object.assign(logevent, args);
+    }
+
     if (arg instanceof Error && arg.stack) {
       logevent.stack = arg.stack.split(/\n/).map(l => l.trim());
     } else if (arg.error instanceof Error && arg.error.stack) {
