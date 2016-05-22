@@ -24,17 +24,19 @@ describe('makeLogEvent', () => {
     it('has level', () => assert.equal(le.level, 'error'));
     it('undefined message', () => assert.isUndefined(le.message));
   });
- 
+
   describe('error object', () => {
     describe('direct', () => {
       const le = llm.makeLogEvent('error', new Error('the error'));
       it('has stack', () => assert.isArray(le.stack));
+      it('has error message', () => assert.equal(le.message, 'the error'));
     });
     describe('indirect', () => {
       const le = llm.makeLogEvent('error', {
         error: new Error('the error')
       });
       it('has stack', () => assert.isArray(le.stack));
+      it('has error message', () => assert.equal(le.message, 'the error'));
     });
   });
 

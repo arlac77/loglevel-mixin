@@ -152,16 +152,23 @@ exports.makeLogEvent = function (level, arg, args) {
     logevent.message = arg;
     return Object.assign(logevent, args);
   } else {
-    if(arg === undefined) {
+    if (arg === undefined) {
       return Object.assign(logevent, args);
     }
 
-    if (arg instanceof Error && arg.stack) {
-      logevent.stack = arg.stack.split(/\n/).map(l => l.trim());
-    } else if (arg.error instanceof Error && arg.error.stack) {
-      logevent.stack = arg.error.stack.split(/\n/).map(l => l.trim());
+    if (arg instanceof Error) {
+      mapError(logevent, arg);
+    } else if (arg.error instanceof Error) {
+      mapError(logevent, arg.error);
     }
 
     return Object.assign(logevent, arg, args);
   }
 };
+
+function mapError(logevent, error) {
+  if (error.stack) {
+    logevent.stack = error.stack.split(/\n/).map(l => l.trim());
+  }
+  logevent.message = error.message;
+}
