@@ -1,6 +1,7 @@
 coverage
 node_modules
 build
+tests
 *.log
 *.tmp
 .DS_Store
