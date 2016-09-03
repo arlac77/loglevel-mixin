@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 4.2
+  - 6.5
 sudo: false
 branches:
   only:
@@ -20,6 +20,6 @@ script:
   - npm run-script cover
 after_script:
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-  - codecov  
+  - codecov
 after_success:
   - npm run semantic-release

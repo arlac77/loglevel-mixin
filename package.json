@@ -13,7 +13,7 @@
     "url": "https://github.com/arlac77/loglevel-mixin.git"
   },
   "engines": {
-    "node": ">=5"
+    "node": ">=6.5"
   },
   "devDependencies": {
     "chai": "3.5.0",
