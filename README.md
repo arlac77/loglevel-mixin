@@ -1,4 +1,3 @@
-
 [![npm](https://img.shields.io/npm/v/loglevel-mixin.svg)](https://www.npmjs.com/package/loglevel-mixin)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/arlac77/loglevel-mixin)
 [![Build Status](https://secure.travis-ci.org/arlac77/loglevel-mixin.png)](http://travis-ci.org/arlac77/loglevel-mixin)
@@ -15,7 +14,7 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 loglevel-mixin
-====
+==============
 
 Injects methods named after a set of logLevels which are only forwarding messages if the current logLevel is higher or equal to the logLevel the name of the called method reflects.
 
@@ -23,7 +22,7 @@ usage
 =====
 
 ```javascript
-const llm = require(`loglevel-mixin`);
+const llm = require('loglevel-mixin');
 
 let someObject = { log(level,message) { console.log(`${level} ${message}`); } };
 
@@ -33,18 +32,18 @@ llm.defineLogLevelProperties(someObject,
   llm.defaultLogLevels,
   llm.defaultLogLevels.info);
 
-someObject.info( level => "my info message")
+someObject.info( level => 'my info message')
 
 someObject.logLevel = 'error';
 
-someObject.info( level => "my info message (not reported)")
+someObject.info( level => 'my info message (not reported since logLevel is error)')
 ```
 
-works for es6 classes to
-------------------
+works for ES2015 classes to
+---------------------------
 
 ```javascript
-const llm = require(`loglevel-mixin`);
+const llm = require('loglevel-mixin');
 
 class BaseClass {
   log(level, message) { console.log(`${level} ${message}`); }
@@ -55,12 +54,10 @@ class LoggingEnabledBaseClass extends llm.LogLevelMixin(BaseClass, llm.defaultLo
   llm.defaultLogLevels['info']) {}
 
 const someObject = new LoggingEnabledBaseClass();
-someObject.info( level => "my info message")
+someObject.info( level => 'my info message')
 someObject.logLevel = 'error';
 
-someObject.info( level => "my info message (not reported)")
-
-
+someObject.info( level => 'my info message (not reported since logLevel is error)')
 ```
 
 install
@@ -76,6 +73,3 @@ license
 =======
 
 BSD-2-Clause
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/arlac77/loglevel-mixin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
