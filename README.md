@@ -26,17 +26,13 @@ const llm = require('loglevel-mixin');
 
 let someObject = { log(level,message) { console.log(`${level} ${message}`); } };
 
-llm.defineLoggerMethods(someObject,
-  llm.defaultLogLevels);
-llm.defineLogLevelProperties(someObject,
-  llm.defaultLogLevels,
-  llm.defaultLogLevels.info);
-
-someObject.info( level => 'my info message')
+llm.defineLoggerMethods(someObject);
+llm.defineLogLevelProperties(someObject);
 
 someObject.logLevel = 'error';
-
 someObject.info( level => 'my info message (not reported since logLevel is error)')
+someObject.logLevel = 'info';
+someObject.info( level => 'my info message (reported since logLevel is now info)')
 ```
 
 works for ES2015 classes to
@@ -49,15 +45,17 @@ class BaseClass {
   log(level, message) { console.log(`${level} ${message}`); }
 }
 
-llm.defineLoggerMethods(BaseClass.prototype, llm.defaultLogLevels);
-class LoggingEnabledBaseClass extends llm.LogLevelMixin(BaseClass, llm.defaultLogLevels,
-  llm.defaultLogLevels['info']) {}
+llm.defineLoggerMethods(BaseClass.prototype);
+
+class LoggingEnabledBaseClass extends llm.LogLevelMixin(BaseClass) {
+}
 
 const someObject = new LoggingEnabledBaseClass();
-someObject.info( level => 'my info message')
-someObject.logLevel = 'error';
 
+someObject.logLevel = 'error';
 someObject.info( level => 'my info message (not reported since logLevel is error)')
+someObject.logLevel = 'info';
+someObject.info( level => 'my info message (reported since logLevel is now info)')
 ```
 
 install

@@ -2,10 +2,10 @@
 
 'use strict';
 
-const logLevels = declareLevels(['trace', 'debug', 'info', 'notice', 'warn', 'error', 'crit', 'alert']);
+const defaultLogLevels = declareLevels(['trace', 'debug', 'info', 'notice', 'warn', 'error', 'crit', 'alert']);
 
 
-exports.defaultLogLevels = logLevels;
+exports.defaultLogLevels = defaultLogLevels;
 
 
 /**
@@ -38,7 +38,7 @@ function declareLevels(list) {
  *        the log level of the called logging function.
  *        By default a method log(level,message) will be used
  */
-exports.defineLoggerMethods = function (object, logLevels, theFunction) {
+exports.defineLoggerMethods = function (object, logLevels = defaultLogLevels, theFunction = undefined) {
 
   const properties = {};
 
@@ -46,7 +46,7 @@ exports.defineLoggerMethods = function (object, logLevels, theFunction) {
     const myLevel = logLevels[level].priority;
     const levelName = level;
     properties[levelName] = {
-      value: theFunction ?
+      value: theFunction !== undefined ?
         function (providerFunction) {
           if (this.logLevelPriority >= myLevel)
             if (typeof providerFunction === 'function') {
@@ -76,30 +76,31 @@ exports.defineLoggerMethods = function (object, logLevels, theFunction) {
  *  logLevelPriority {Number}
  * This is method if for classes
  * @param {Object} properties target object where the properties will be written into
- * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
- * @param {String} defaultLogLevel the default value for the logLevel property
+ * @param {Object} logLevels Object with all the available loglevels. Stored by their name; defaults to defaultLogLevels
+ * @param {String} defaultLogLevel the default value for the logLevel property; defaults to 'info'
  */
-exports.LogLevelMixin = (superclass, logLevels, defaultLogLevel) => class extends superclass {
-  constructor() {
-    super();
-    this._logLevel = defaultLogLevel;
-  }
+exports.LogLevelMixin = (superclass, logLevels = defaultLogLevels, defaultLogLevel = defaultLogLevels.info) =>
+  class extends superclass {
+    constructor() {
+      super();
+      this._logLevel = defaultLogLevel;
+    }
 
-  get logLevel() {
-    return this._logLevel.name;
-  }
+    get logLevel() {
+      return this._logLevel.name;
+    }
 
-  /**
-   * Set the logging level
-   * @param {String} level
-   */
-  set logLevel(level) {
-    this._logLevel = logLevels[level] || defaultLogLevel;
-  }
-  get logLevelPriority() {
-    return this._logLevel.priority;
-  }
-};
+    /**
+     * Set the logging level
+     * @param {String} level
+     */
+    set logLevel(level) {
+      this._logLevel = logLevels[level] || defaultLogLevel;
+    }
+    get logLevelPriority() {
+      return this._logLevel.priority;
+    }
+  };
 
 
 /**
@@ -108,10 +109,10 @@ exports.LogLevelMixin = (superclass, logLevels, defaultLogLevel) => class extend
  *  logLevelPriority {Number}
  *
  * @param {Object} properties target object where the properties will be written into
- * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
- * @param {String} defaultLogLevel the default value for the properties
+ * @param {Object} logLevels Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels
+ * @param {String} defaultLogLevel the default value for the properties; defaults to 'info'
  */
-exports.defineLogLevelProperties = function (object, logLevels, defaultLogLevel) {
+exports.defineLogLevelProperties = function (object, logLevels = defaultLogLevels, defaultLogLevel = defaultLogLevels.info) {
   const properties = {};
 
   let logLevel = defaultLogLevel;

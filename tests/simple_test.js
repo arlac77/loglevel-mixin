@@ -29,8 +29,8 @@ describe('logging', () => {
   });
   llm.defineLogLevelProperties(someObject, llm.defaultLogLevels, llm.defaultLogLevels.info);
 
-  llm.defineLoggerMethods(someOtherObject, llm.defaultLogLevels);
-  llm.defineLogLevelProperties(someOtherObject, llm.defaultLogLevels, llm.defaultLogLevels.info);
+  llm.defineLoggerMethods(someOtherObject);
+  llm.defineLogLevelProperties(someOtherObject);
 
   describe('levels', function () {
     it('default info', function () {
