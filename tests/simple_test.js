@@ -31,42 +31,40 @@ describe('logging', () => {
   llm.defineLoggerMethods(someOtherObject);
   llm.defineLogLevelProperties(someOtherObject);
 
-  describe('levels', function () {
-    it('default info', function () {
-      assert.equal(someObject.logLevel, 'info');
-    });
+  describe('levels', () => {
+    it('default info', () => assert.equal(someObject.logLevel, 'info'));
 
-    it('set invalid fallback info', function () {
+    it('set invalid fallback info', () => {
       someObject.logLevel = 'unknown';
       assert.equal(someObject.logLevel, 'info');
     });
 
     ['trace', 'debug', 'error', 'notice', 'warn', 'debug', 'info'].forEach(level => {
-      it(`set ${level}`, function () {
+      it(`set ${level}`, () => {
         someObject.logLevel = level;
         assert.equal(someObject.logLevel, level);
       });
     });
 
-    it('default info', function () {
+    it('default info', () => {
       someOtherObject.logLevel = 'trace';
       assert.equal(someOtherObject.logLevel, 'trace');
       assert.equal(someObject.logLevel, 'info');
     });
   });
 
-  describe('logging with levels', function () {
-    it('info passes', function () {
+  describe('logging with levels', () => {
+    it('info passes', () => {
       someObject.info(level => 'info message');
       assert.equal(theValue, 'info message');
       assert.equal(theLevel, 'info');
     });
-    it('trace ignored', function () {
+    it('trace ignored', () => {
       someObject.trace(level => 'trace message');
       assert.equal(theValue, 'info message');
       assert.equal(theLevel, 'info');
     });
-    it('error passes', function () {
+    it('error passes', () => {
       someObject.error('error message');
       assert.equal(theValue, 'error message');
       assert.equal(theLevel, 'error');
