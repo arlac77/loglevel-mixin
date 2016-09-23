@@ -1,5 +1,5 @@
 module.exports = {
   require: {
-    'loglevel-mixin': require('./LogLevelMixin')
+    'loglevel-mixin': require('./dist/LogLevelMixin')
   }
 }

@@ -1,14 +1,14 @@
 /* global describe, it*/
 /* jslint node: true, esnext: true */
 
-"use strict";
+'use strict';
 
 const chai = require('chai'),
   assert = chai.assert,
   expect = chai.expect,
   should = chai.should();
 
-const llm = require('../LogLevelMixin');
+const llm = require('../dist/LogLevelMixin');
 
 describe('makeLogEvent', () => {
   describe('plain', () => {

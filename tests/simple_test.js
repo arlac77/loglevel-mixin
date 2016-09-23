@@ -8,10 +8,9 @@ const chai = require('chai'),
   expect = chai.expect,
   should = chai.should();
 
-const llm = require('../LogLevelMixin');
+const llm = require('../dist/LogLevelMixin');
 
 describe('logging', () => {
-
   let theValue = 0;
   let theLevel = 'none';
 

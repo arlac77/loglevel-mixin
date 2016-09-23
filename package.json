@@ -1,11 +1,15 @@
 {
   "name": "loglevel-mixin",
   "description": "mixin to declare logging methods named after a set of log levels",
-  "main": "LogLevelMixin.js",
+  "main": "dist/LogLevelMixin.js",
+  "jsnext:main": "src/LogLevelMixin.js",
+  "module": "src/LogLevelMixin.js",
+
   "scripts": {
     "cover": "node ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests/*_test.js",
-    "doc": "jsdoc lib/*.js",
-    "test": "mocha tests/*_test.js && markdown-doctest",
+    "doc": "jsdoc src/*.js",
+    "build": "./node_modules/rollup/bin/rollup --format=cjs --output=dist/LogLevelMixin.js -- src/LogLevelMixin.js",
+    "test": "npm run build && mocha tests/*_test.js && markdown-doctest",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -24,6 +28,7 @@
     "istanbul": "0.4.5",
     "jsdoc": "3.4.1",
     "mocha": "3.0.2",
+    "rollup": "^0.36.0",
     "semantic-release": "6.3.0"
   },
   "release": {
