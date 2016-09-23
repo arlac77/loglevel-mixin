@@ -10,7 +10,7 @@
     "doc": "jsdoc src/*.js",
     "build": "./node_modules/rollup/bin/rollup --format=cjs --output=dist/LogLevelMixin.js -- src/LogLevelMixin.js",
     "test": "npm run build && mocha tests/*_test.js && markdown-doctest",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "npm run build && semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
