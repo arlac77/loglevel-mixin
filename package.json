@@ -4,9 +4,8 @@
   "main": "dist/LogLevelMixin.js",
   "jsnext:main": "src/LogLevelMixin.js",
   "module": "src/LogLevelMixin.js",
-
   "scripts": {
-    "cover": "node ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests/*_test.js",
+    "cover": "npm run build && ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests/*_test.js",
     "doc": "jsdoc src/*.js",
     "build": "./node_modules/rollup/bin/rollup --format=cjs --output=dist/LogLevelMixin.js -- src/LogLevelMixin.js",
     "test": "npm run build && mocha tests/*_test.js && markdown-doctest",
