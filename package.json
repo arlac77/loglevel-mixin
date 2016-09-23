@@ -1,5 +1,6 @@
 {
   "name": "loglevel-mixin",
+  "version": "0.0.0-semantic-release",
   "description": "mixin to declare logging methods named after a set of log levels",
   "main": "dist/LogLevelMixin.js",
   "jsnext:main": "src/LogLevelMixin.js",
