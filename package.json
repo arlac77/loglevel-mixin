@@ -26,6 +26,9 @@
     "mocha": "3.0.2",
     "semantic-release": "6.3.0"
   },
+  "release": {
+    "verifyRelease": "cracks"
+  },
   "keywords": [
     "loglevel"
   ],
