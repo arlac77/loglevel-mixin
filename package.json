@@ -35,7 +35,8 @@
     "verifyRelease": "cracks"
   },
   "keywords": [
-    "loglevel"
+    "loglevel",
+    "logging"
   ],
   "author": "Markus Felten <markus.felten@gmx.de>",
   "license": "BSD-2-Clause",
