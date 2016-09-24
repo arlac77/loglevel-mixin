@@ -31,7 +31,7 @@
     "rollup": "^0.36.0",
     "semantic-release": "6.3.0"
   },
-  "_release": {
+  "release": {
     "verifyRelease": "cracks"
   },
   "keywords": [
