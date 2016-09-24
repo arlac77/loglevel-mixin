@@ -38,6 +38,7 @@ someObject.info( level => 'my info message (reported since logLevel is now info)
 works for ES2015 classes to
 ---------------------------
 
+<!-- skip-example -->
 ```javascript
 const llm = require('loglevel-mixin');
 
