@@ -78,7 +78,9 @@ function defineLoggerMethods(object, logLevels = defaultLogLevels, theFunction =
  * @param {String} defaultLogLevel the default value for the logLevel property; defaults to `info`
  * ```javascript
  * import { LogLevelMixin } = from 'loglevel-mixin';
- * class BaseClass {}
+ * class BaseClass {
+ *   log(level, message) { console.log(`${level} ${message}`); }
+ * }
  * class LoggingEnabledClass extends LogLevelMixin(BaseClass) {
  * }
  * ```
