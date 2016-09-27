@@ -72,10 +72,16 @@ function defineLoggerMethods(object, logLevels = defaultLogLevels, theFunction =
  * Declares two properties:
  * logLevel {String} `info`,`error`,...
  * logLevelPriority {Number}
- * This is method if for classes
+ * This is method is for ES2015 classes.
  * @param {Object} properties target object where the properties will be written into
  * @param {Object} logLevels Object with all the available loglevels. Stored by their name; defaults to defaultLogLevels
  * @param {String} defaultLogLevel the default value for the logLevel property; defaults to `info`
+ * ```javascript
+ * import { LogLevelMixin } = from 'loglevel-mixin';
+ * class BaseClass {}
+ * class LoggingEnabledClass extends LogLevelMixin(BaseClass) {
+ * }
+ * ```
  */
 function LogLevelMixin(superclass, logLevels = defaultLogLevels, defaultLogLevel = defaultLogLevels.info) {
   return class extends superclass {
@@ -89,12 +95,14 @@ function LogLevelMixin(superclass, logLevels = defaultLogLevels, defaultLogLevel
     }
 
     /**
-     * Set the logging level
+     * Set the logging level.
+     * if an unknown logLEvel is given the default logLevel will be used.
      * @param {String} level
      */
     set logLevel(level) {
       this._logLevel = logLevels[level] || defaultLogLevel;
     }
+
     get logLevelPriority() {
       return this._logLevel.priority;
     }
@@ -134,7 +142,7 @@ function defineLogLevelProperties(object, logLevels = defaultLogLevels, defaultL
 }
 
 /**
- * Helper function to aggregates values into a log event
+ * Helper function to aggregate values into a log event
  * @param {String} level log level
  * @param {String|Object} arg original log message - level and timestamp may be overwritten
  * @param {Object} args additional values to be merged into the final log event - values have precedence

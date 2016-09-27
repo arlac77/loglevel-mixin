@@ -46,10 +46,10 @@ class BaseClass {
 
 llm.defineLoggerMethods(BaseClass.prototype);
 
-class LoggingEnabledBaseClass extends llm.LogLevelMixin(BaseClass) {
+class LoggingEnabledClass extends llm.LogLevelMixin(BaseClass) {
 }
 
-const someObject = new LoggingEnabledBaseClass();
+const someObject = new LoggingEnabledClass();
 
 someObject.logLevel = 'error';
 someObject.info( level => 'my info message (not reported since logLevel is error)')
