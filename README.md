@@ -8,7 +8,6 @@
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/loglevel-mixin.svg?style=flat-square)](https://github.com/arlac77/loglevel-mixin/issues)
 [![Dependency Status](https://david-dm.org/arlac77/loglevel-mixin.svg)](https://david-dm.org/arlac77/loglevel-mixin)
 [![devDependency Status](https://david-dm.org/arlac77/loglevel-mixin/dev-status.svg)](https://david-dm.org/arlac77/loglevel-mixin#info=devDependencies)
-[![docs](http://inch-ci.org/github/arlac77/loglevel-mixin.svg?branch=master)](http://inch-ci.org/github/arlac77/loglevel-mixin)
 [![downloads](http://img.shields.io/npm/dm/loglevel-mixin.svg?style=flat-square)](https://npmjs.org/package/loglevel-mixin)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
@@ -46,10 +45,10 @@ class BaseClass {
 
 llm.defineLoggerMethods(BaseClass.prototype);
 
-class LoggingEnabledBaseClass extends llm.LogLevelMixin(BaseClass) {
+class LoggingEnabledClass extends llm.LogLevelMixin(BaseClass) {
 }
 
-const someObject = new LoggingEnabledBaseClass();
+const someObject = new LoggingEnabledClass();
 
 someObject.logLevel = 'error';
 someObject.info( level => 'my info message (not reported since logLevel is error)')
@@ -67,81 +66,65 @@ npm install loglevel-mixin
 ```
 
 # API Reference
+- loglevel-mixin
 
-* <a name="declareLevels"></a>
+* <a name="module_loglevel-mixin..declareLevels"></a>
 
-## declareLevels(list) ⇒ <code>Object</code>
+## loglevel-mixin~declareLevels(list) ⇒ <code>object</code>
 Generate the loglevel objects out of a list of log level names.
 
-**Kind**: global function
-**Returns**: <code>Object</code> - levels object A hash with all the loglevels. Stored by there name.
+**Kind**: inner method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
+**Returns**: <code>object</code> - levels object A hash with all the loglevels. Stored by there name.  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | list | <code>Array.&lt;string&gt;</code> | A list of log level names. The last name in the list will become the one with the highest priority. |
 
 
-* <a name="defineLoggerMethods"></a>
+* <a name="module_loglevel-mixin..defineLoggerMethods"></a>
 
-## defineLoggerMethods(target, logLevels, theFunction)
+## loglevel-mixin~defineLoggerMethods(target, logLevels, theFunction)
 Adds logging methods to an existing object.
 For each loglevel a method with the name of the log level will be created.
 
-**Kind**: global function
+**Kind**: inner method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| target | <code>Object</code> | object where to assign properties tp |
-| logLevels | <code>Object</code> | Hash with all the available loglevels. Stored by there name |
+| target | <code>object</code> | object where to assign properties to |
+| logLevels | <code>object</code> | Hash with all the available loglevels. Stored by there name |
 | theFunction | <code>function</code> | The function to be added under the loglevel name.        This function will only be called if the current loglevel is greater equal        the log level of the called logging function.        By default a method log(level,message) will be used |
 
 
-* <a name="LogLevelMixin"></a>
+* <a name="module_loglevel-mixin..defineLogLevelProperties"></a>
 
-## LogLevelMixin(properties, logLevels, defaultLogLevel)
-Declares two properties:
-logLevel {String} `info`,`error`,...
-logLevelPriority {Number}
-This is method if for classes
-
-**Kind**: global function
-
-| Param | Type | Description |
-| --- | --- | --- |
-| properties | <code>Object</code> | target object where the properties will be written into |
-| logLevels | <code>Object</code> | Object with all the available loglevels. Stored by their name; defaults to defaultLogLevels |
-| defaultLogLevel | <code>String</code> | the default value for the logLevel property; defaults to `info` |
-
-
-* <a name="defineLogLevelProperties"></a>
-
-## defineLogLevelProperties(properties, logLevels, defaultLogLevel)
+## loglevel-mixin~defineLogLevelProperties(properties, logLevels, defaultLogLevel)
 Declares two properties:
  logLevel {String} `info`,`error`,...
  logLevelPriority {Number}
 
-**Kind**: global function
+**Kind**: inner method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| properties | <code>Object</code> | target object where the properties will be written into |
-| logLevels | <code>Object</code> | Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels |
-| defaultLogLevel | <code>String</code> | the default value for the properties; defaults to `info` |
+| properties | <code>object</code> | target object where the properties will be written into |
+| logLevels | <code>object</code> | Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels |
+| defaultLogLevel | <code>string</code> | the default value for the properties; defaults to `info` |
 
 
-* <a name="makeLogEvent"></a>
+* <a name="module_loglevel-mixin..makeLogEvent"></a>
 
-## makeLogEvent(level, arg, args) ⇒ <code>Object</code>
-Helper function to aggregates values into a log event
+## loglevel-mixin~makeLogEvent(level, arg, args) ⇒ <code>object</code>
+Helper function to aggregate values into a log event
 
-**Kind**: global function
-**Returns**: <code>Object</code> - suitable for log event processing
+**Kind**: inner method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
+**Returns**: <code>object</code> - suitable for log event processing  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| level | <code>String</code> | log level |
-| arg | <code>String</code> &#124; <code>Object</code> | original log message - level and timestamp may be overwritten |
-| args | <code>Object</code> | additional values to be merged into the final log event - values have precedence |
+| level | <code>string</code> | log level |
+| arg | <code>string</code> &#124; <code>object</code> | original log message - level and timestamp may be overwritten |
+| args | <code>object</code> | additional values to be merged into the final log event - values have precedence |
 
 
 * * *
