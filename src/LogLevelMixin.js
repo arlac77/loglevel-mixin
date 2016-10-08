@@ -34,12 +34,13 @@ function declareLevels(list) {
 /**
  * Adds logging methods to an existing object.
  * For each loglevel a method with the name of the log level will be created.
- * @param {object} target object where to assign properties to
+ * @param {object} object target where to assign properties to
  * @param {object} logLevels Hash with all the available loglevels. Stored by there name
  * @param {function} theFunction The function to be added under the loglevel name.
  *        This function will only be called if the current loglevel is greater equal
  *        the log level of the called logging function.
  *        By default a method log(level,message) will be used
+ * @return {void}
  */
 function defineLoggerMethods(object, logLevels = defaultLogLevels, theFunction = undefined) {
   const properties = {};
@@ -75,10 +76,10 @@ function defineLoggerMethods(object, logLevels = defaultLogLevels, theFunction =
 /**
  * @class
  * @classdesc This function is a mixin for ES2015 classes.
- * @param {object} properties target object where the properties will be written into
+ * @param {class} superclass class to be extendet
  * @param {object} [logLevels] Object with all the available loglevels. Stored by their name; defaults to defaultLogLevels
  * @param {string} [defaultLogLevel] the default value for the logLevel property; defaults to `info`
- *
+ * @return {class} newly created class ready to be further extendet/used
  * @example
  * ```js
  * import { LogLevelMixin } = from 'loglevel-mixin';
@@ -126,7 +127,7 @@ function LogLevelMixin(superclass, logLevels = defaultLogLevels, defaultLogLevel
  *  logLevel {String} `info`,`error`,...
  *  logLevelPriority {Number}
  *
- * @param {object} properties target object where the properties will be written into
+ * @param {object} object target where the properties will be written into
  * @param {object} logLevels Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels
  * @param {string} defaultLogLevel the default value for the properties; defaults to `info`
  */
