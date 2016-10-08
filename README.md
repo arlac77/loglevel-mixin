@@ -83,7 +83,7 @@ Generate the loglevel objects out of a list of log level names.
 
 * <a name="module_loglevel-mixin..defineLoggerMethods"></a>
 
-## loglevel-mixin~defineLoggerMethods(target, logLevels, theFunction)
+## loglevel-mixin~defineLoggerMethods(object, logLevels, theFunction) ⇒ <code>void</code>
 Adds logging methods to an existing object.
 For each loglevel a method with the name of the log level will be created.
 
@@ -91,14 +91,14 @@ For each loglevel a method with the name of the log level will be created.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| target | <code>object</code> | object where to assign properties to |
+| object | <code>object</code> | target where to assign properties to |
 | logLevels | <code>object</code> | Hash with all the available loglevels. Stored by there name |
 | theFunction | <code>function</code> | The function to be added under the loglevel name.        This function will only be called if the current loglevel is greater equal        the log level of the called logging function.        By default a method log(level,message) will be used |
 
 
 * <a name="module_loglevel-mixin..defineLogLevelProperties"></a>
 
-## loglevel-mixin~defineLogLevelProperties(properties, logLevels, defaultLogLevel)
+## loglevel-mixin~defineLogLevelProperties(object, logLevels, defaultLogLevel)
 Declares two properties:
  logLevel {String} `info`,`error`,...
  logLevelPriority {Number}
@@ -107,7 +107,7 @@ Declares two properties:
 
 | Param | Type | Description |
 | --- | --- | --- |
-| properties | <code>object</code> | target object where the properties will be written into |
+| object | <code>object</code> | target where the properties will be written into |
 | logLevels | <code>object</code> | Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels |
 | defaultLogLevel | <code>string</code> | the default value for the properties; defaults to `info` |
 
