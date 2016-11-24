@@ -5,10 +5,10 @@
   "main": "dist/LogLevelMixin.js",
   "module": "src/LogLevelMixin.js",
   "scripts": {
-    "cover": "npm run build && ./node_modules/istanbul/lib/cli.js cover --hook-run-in-context ./node_modules/mocha/bin/_mocha -- --R spec --U exports tests/*_test.js",
-    "docs": "jsdoc2md -l off -t doc/README.hbs -f src/LogLevelMixin.js > README.md",
-    "build": "./node_modules/rollup/bin/rollup --output=dist/LogLevelMixin.js -c -- src/LogLevelMixin.js",
-    "test": "npm run build && mocha tests/*_test.js && markdown-doctest",
+    "cover": "npm run build && node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -u exports tests/*_test.js",
+    "docs": "jsdoc2md -l off -t doc/README.hbs -f src/*.js > README.md",
+    "build": "node_modules/rollup/bin/rollup --output=dist/LogLevelMixin.js -c -- src/LogLevelMixin.js",
+    "test": "npm run build && node_modules/.bin/mocha tests/*_test.js && markdown-doctest",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
