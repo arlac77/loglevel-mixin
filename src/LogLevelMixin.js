@@ -9,14 +9,14 @@
 /**
  * default log levels
  */
-const defaultLogLevels = declareLevels(['trace', 'debug', 'info', 'notice', 'warn', 'error', 'crit', 'alert']);
+export const defaultLogLevels = declareLevels(['trace', 'debug', 'info', 'notice', 'warn', 'error', 'crit', 'alert']);
 
 /**
  * Generate the loglevel objects out of a list of log level names.
  * @param {string[]} list A list of log level names. The last name in the list will become the one with the highest priority.
  * @return {object} levels object A hash with all the loglevels. Stored by there name.
  */
-function declareLevels(list) {
+export function declareLevels(list) {
   const levels = {};
   let priority = list.length;
 
@@ -42,7 +42,7 @@ function declareLevels(list) {
  *        By default a method log(level,message) will be used
  * @return {void}
  */
-function defineLoggerMethods(object, logLevels = defaultLogLevels, theFunction = undefined) {
+export function defineLoggerMethods(object, logLevels = defaultLogLevels, theFunction = undefined) {
   const properties = {};
 
   Object.keys(logLevels).forEach(level => {
@@ -90,7 +90,7 @@ function defineLoggerMethods(object, logLevels = defaultLogLevels, theFunction =
  * }
  * ```
  */
-function LogLevelMixin(superclass, logLevels = defaultLogLevels, defaultLogLevel = defaultLogLevels.info) {
+export function LogLevelMixin(superclass, logLevels = defaultLogLevels, defaultLogLevel = defaultLogLevels.info) {
   return class extends superclass {
     constructor() {
       super();
@@ -131,7 +131,7 @@ function LogLevelMixin(superclass, logLevels = defaultLogLevels, defaultLogLevel
  * @param {object} logLevels Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels
  * @param {string} defaultLogLevel the default value for the properties; defaults to `info`
  */
-function defineLogLevelProperties(object, logLevels = defaultLogLevels, defaultLogLevel = defaultLogLevels.info) {
+export function defineLogLevelProperties(object, logLevels = defaultLogLevels, defaultLogLevel = defaultLogLevels.info) {
   const properties = {};
 
   let logLevel = defaultLogLevel;
@@ -161,7 +161,7 @@ function defineLogLevelProperties(object, logLevels = defaultLogLevels, defaultL
  * @param {object} args additional values to be merged into the final log event - values have precedence
  * @return {object} suitable for log event processing
  */
-function makeLogEvent(level, arg, args) {
+export function makeLogEvent(level, arg, args) {
   const logevent = {
     timestamp: Date.now(),
     level: level
@@ -191,11 +191,3 @@ function mapError(logevent, error) {
   }
   logevent.message = error.message;
 }
-
-export {
-  defaultLogLevels,
-  defineLoggerMethods,
-  LogLevelMixin,
-  defineLogLevelProperties,
-  makeLogEvent
-};

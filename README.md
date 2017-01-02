@@ -7,6 +7,7 @@
 [![Code Climate](https://codeclimate.com/github/arlac77/loglevel-mixin/badges/gpa.svg)](https://codeclimate.com/github/arlac77/loglevel-mixin)
 [![Known Vulnerabilities](https://snyk.io/test/github/arlac77/loglevel-mixin/badge.svg)](https://snyk.io/test/github/arlac77/loglevel-mixin)
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/loglevel-mixin.svg?style=flat-square)](https://github.com/arlac77/loglevel-mixin/issues)
+[![Stories in Ready](https://badge.waffle.io/arlac77/loglevel-mixin.svg?label=ready&title=Ready)](http://waffle.io/arlac77/loglevel-mixin)
 [![Dependency Status](https://david-dm.org/arlac77/loglevel-mixin.svg)](https://david-dm.org/arlac77/loglevel-mixin)
 [![devDependency Status](https://david-dm.org/arlac77/loglevel-mixin/dev-status.svg)](https://david-dm.org/arlac77/loglevel-mixin#info=devDependencies)
 [![docs](http://inch-ci.org/github/arlac77/loglevel-mixin.svg?branch=master)](http://inch-ci.org/github/arlac77/loglevel-mixin)
@@ -70,12 +71,12 @@ npm install loglevel-mixin
 # API Reference
 - loglevel-mixin
 
-* <a name="module_loglevel-mixin..declareLevels"></a>
+* <a name="module_loglevel-mixin.declareLevels"></a>
 
-## loglevel-mixin~declareLevels(list) ⇒ <code>object</code>
+## loglevel-mixin.declareLevels(list) ⇒ <code>object</code>
 Generate the loglevel objects out of a list of log level names.
 
-**Kind**: inner method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
+**Kind**: static method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
 **Returns**: <code>object</code> - levels object A hash with all the loglevels. Stored by there name.  
 
 | Param | Type | Description |
@@ -83,13 +84,13 @@ Generate the loglevel objects out of a list of log level names.
 | list | <code>Array.&lt;string&gt;</code> | A list of log level names. The last name in the list will become the one with the highest priority. |
 
 
-* <a name="module_loglevel-mixin..defineLoggerMethods"></a>
+* <a name="module_loglevel-mixin.defineLoggerMethods"></a>
 
-## loglevel-mixin~defineLoggerMethods(object, logLevels, theFunction) ⇒ <code>void</code>
+## loglevel-mixin.defineLoggerMethods(object, logLevels, theFunction) ⇒ <code>void</code>
 Adds logging methods to an existing object.
 For each loglevel a method with the name of the log level will be created.
 
-**Kind**: inner method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
+**Kind**: static method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -98,14 +99,14 @@ For each loglevel a method with the name of the log level will be created.
 | theFunction | <code>function</code> | The function to be added under the loglevel name.        This function will only be called if the current loglevel is greater equal        the log level of the called logging function.        By default a method log(level,message) will be used |
 
 
-* <a name="module_loglevel-mixin..defineLogLevelProperties"></a>
+* <a name="module_loglevel-mixin.defineLogLevelProperties"></a>
 
-## loglevel-mixin~defineLogLevelProperties(object, logLevels, defaultLogLevel)
+## loglevel-mixin.defineLogLevelProperties(object, logLevels, defaultLogLevel)
 Declares two properties:
  logLevel {String} `info`,`error`,...
  logLevelPriority {Number}
 
-**Kind**: inner method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
+**Kind**: static method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -114,12 +115,12 @@ Declares two properties:
 | defaultLogLevel | <code>string</code> | the default value for the properties; defaults to `info` |
 
 
-* <a name="module_loglevel-mixin..makeLogEvent"></a>
+* <a name="module_loglevel-mixin.makeLogEvent"></a>
 
-## loglevel-mixin~makeLogEvent(level, arg, args) ⇒ <code>object</code>
+## loglevel-mixin.makeLogEvent(level, arg, args) ⇒ <code>object</code>
 Helper function to aggregate values into a log event
 
-**Kind**: inner method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
+**Kind**: static method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
 **Returns**: <code>object</code> - suitable for log event processing  
 
 | Param | Type | Description |
