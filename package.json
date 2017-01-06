@@ -6,7 +6,7 @@
   "module": "src/LogLevelMixin.js",
   "scripts": {
     "cover": "npm run prepublish && istanbul cover node_modules/.bin/_mocha -- -u exports tests/*_test.js",
-    "docs": "jsdoc2md -l off -t doc/README.hbs -f src/*.js > README.md",
+    "docs": "jsdoc2md -l off -t doc/README.hbs -f src/*.js >README.md",
     "test": "mocha tests/*_test.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prepublish": "rollup --output=dist/LogLevelMixin.js -c -- src/LogLevelMixin.js",
@@ -18,7 +18,7 @@
     "url": "https://github.com/arlac77/loglevel-mixin.git"
   },
   "engines": {
-    "node": ">=6.9.2"
+    "node": ">=6.9.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -29,7 +29,7 @@
     "jsdoc-to-markdown": "^2.0.1",
     "markdown-doctest": "^0.9.1",
     "mocha": "^3.2.0",
-    "rollup": "^0.40.0",
+    "rollup": "^0.40.2",
     "semantic-release": "^6.3.5"
   },
   "release": {
