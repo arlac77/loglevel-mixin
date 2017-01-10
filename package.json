@@ -5,32 +5,33 @@
   "main": "dist/LogLevelMixin.js",
   "module": "src/LogLevelMixin.js",
   "scripts": {
-    "cover": "npm run prepublish && istanbul cover node_modules/.bin/_mocha -- -u exports tests/*_test.js",
+    "cover": "nyc npm test",
     "docs": "jsdoc2md -l off -t doc/README.hbs -f src/*.js >README.md",
     "test": "mocha tests/*_test.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "prepublish": "rollup --output=dist/LogLevelMixin.js -c -- src/LogLevelMixin.js",
     "pretest": "npm run prepublish",
-    "posttest": "markdown-doctest"
+    "posttest": "markdown-doctest",
+    "precover": "npm run prepublish"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/arlac77/loglevel-mixin.git"
   },
   "engines": {
-    "node": ">=6.9.3"
+    "node": ">=6.9.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "2.11.15",
     "cracks": "3.1.2",
     "cz-conventional-changelog": "^1.2.0",
-    "istanbul": "^0.4.5",
     "jsdoc-to-markdown": "^2.0.1",
     "markdown-doctest": "^0.9.1",
     "mocha": "^3.2.0",
     "rollup": "^0.41.1",
-    "semantic-release": "^6.3.5"
+    "semantic-release": "^6.3.5",
+    "nyc": "^10.0.0"
   },
   "release": {
     "verifyRelease": "cracks"
@@ -55,5 +56,14 @@
       "name": "Markus Felten",
       "email": "markus.felten@gmx.de"
     }
-  ]
+  ],
+  "nyc": {
+    "include": [
+      "dist/**/*.js"
+    ],
+    "reporter": [
+      "lcov"
+    ],
+    "report-dir": "./coverage"
+  }
 }
