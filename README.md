@@ -86,7 +86,7 @@ Generate the loglevel objects out of a list of log level names.
 
 * <a name="module_loglevel-mixin.defineLoggerMethods"></a>
 
-## loglevel-mixin.defineLoggerMethods(object, logLevels, theFunction) ⇒ <code>void</code>
+## loglevel-mixin.defineLoggerMethods(object, logLevels, [theFunction]) ⇒ <code>undefined</code>
 Adds logging methods to an existing object.
 For each loglevel a method with the name of the log level will be created.
 
@@ -96,28 +96,28 @@ For each loglevel a method with the name of the log level will be created.
 | --- | --- | --- |
 | object | <code>object</code> | target where to assign properties to |
 | logLevels | <code>object</code> | Hash with all the available loglevels. Stored by there name |
-| theFunction | <code>function</code> | The function to be added under the loglevel name.        This function will only be called if the current loglevel is greater equal        the log level of the called logging function.        By default a method log(level,message) will be used |
+| [theFunction] | <code>function</code> | The function to be added under the loglevel name.        This function will only be called if the current loglevel is greater equal        the log level of the called logging function.        By default a method log(level,message) will be used |
 
 
 * <a name="module_loglevel-mixin.defineLogLevelProperties"></a>
 
-## loglevel-mixin.defineLogLevelProperties(object, logLevels, defaultLogLevel)
+## loglevel-mixin.defineLogLevelProperties(object, [logLevels], [defaultLogLevel])
 Declares two properties:
- logLevel {String} `info`,`error`,...
- logLevelPriority {Number}
+ logLevel {string} `info`,`error`,...
+ logLevelPriority {number}
 
 **Kind**: static method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| object | <code>object</code> | target where the properties will be written into |
-| logLevels | <code>object</code> | Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels |
-| defaultLogLevel | <code>string</code> | the default value for the properties; defaults to `info` |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| object | <code>object</code> |  | target where the properties will be written into |
+| [logLevels] | <code>object</code> | <code>defaultLogLevels</code> | Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels |
+| [defaultLogLevel] | <code>string</code> | <code>&quot;info&quot;</code> | the default value for the properties; defaults to `info` |
 
 
 * <a name="module_loglevel-mixin.makeLogEvent"></a>
 
-## loglevel-mixin.makeLogEvent(level, arg, args) ⇒ <code>object</code>
+## loglevel-mixin.makeLogEvent(level, arg, [args]) ⇒ <code>object</code>
 Helper function to aggregate values into a log event
 
 **Kind**: static method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
@@ -127,7 +127,7 @@ Helper function to aggregate values into a log event
 | --- | --- | --- |
 | level | <code>string</code> | log level |
 | arg | <code>string</code> &#124; <code>object</code> | original log message - level and timestamp may be overwritten |
-| args | <code>object</code> | additional values to be merged into the final log event - values have precedence |
+| [args] | <code>object</code> | additional values to be merged into the final log event - values have precedence |
 
 
 * * *
