@@ -19,7 +19,7 @@
     "url": "https://github.com/arlac77/loglevel-mixin.git"
   },
   "engines": {
-    "node": ">=7.7.2"
+    "node": ">=7.7.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -28,7 +28,7 @@
     "jsdoc-to-markdown": "^3.0.0",
     "markdown-doctest": "^0.9.1",
     "mocha": "^3.2.0",
-    "nyc": "^10.1.2",
+    "nyc": "^10.2.0",
     "rollup": "^0.41.6",
     "semantic-release": "^6.3.6"
   },
