@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/arlac77/loglevel-mixin.git"
+    "url": "git+https://github.com/arlac77/loglevel-mixin.git"
   },
   "engines": {
     "node": ">=8.3.0"
