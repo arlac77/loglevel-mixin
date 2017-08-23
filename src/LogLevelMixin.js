@@ -9,7 +9,16 @@
 /**
  * default log levels
  */
-export const defaultLogLevels = declareLevels(['trace', 'debug', 'info', 'notice', 'warn', 'error', 'crit', 'alert']);
+export const defaultLogLevels = declareLevels([
+  'trace',
+  'debug',
+  'info',
+  'notice',
+  'warn',
+  'error',
+  'crit',
+  'alert'
+]);
 
 /**
  * Generate the loglevel objects out of a list of log level names.
@@ -42,36 +51,45 @@ export function declareLevels(list) {
  *        By default a method log(level,message) will be used
  * @return {undefined}
  */
-export function defineLoggerMethods(object, logLevels = defaultLogLevels, theFunction = undefined) {
+export function defineLoggerMethods(
+  object,
+  logLevels = defaultLogLevels,
+  theFunction = undefined
+) {
   const properties = {};
 
   Object.keys(logLevels).forEach(level => {
     const myLevel = logLevels[level].priority;
     const levelName = level;
     properties[levelName] = {
-      value: theFunction !== undefined ?
-        function (providerFunction) {
-          if (this.logLevelPriority >= myLevel)
-            if (typeof providerFunction === 'function') {
-              theFunction.call(this, levelName, providerFunction(levelName));
-            } else {
-              theFunction.call(this, levelName, providerFunction);
+      value:
+        theFunction !== undefined
+          ? function(providerFunction) {
+              if (this.logLevelPriority >= myLevel)
+                if (typeof providerFunction === 'function') {
+                  theFunction.call(
+                    this,
+                    levelName,
+                    providerFunction(levelName)
+                  );
+                } else {
+                  theFunction.call(this, levelName, providerFunction);
+                }
             }
-        } : function (providerFunction) {
-          if (this.logLevelPriority >= myLevel)
-            if (typeof providerFunction === 'function') {
-              this.log(levelName, providerFunction(levelName));
-            } else {
-              this.log(levelName, providerFunction);
-            }
-        },
+          : function(providerFunction) {
+              if (this.logLevelPriority >= myLevel)
+                if (typeof providerFunction === 'function') {
+                  this.log(levelName, providerFunction(levelName));
+                } else {
+                  this.log(levelName, providerFunction);
+                }
+            },
       enumerable: true
     };
   });
 
   Object.defineProperties(object, properties);
 }
-
 
 /**
  * @class
@@ -89,8 +107,13 @@ export function defineLoggerMethods(object, logLevels = defaultLogLevels, theFun
  * class LoggingEnabledClass extends LogLevelMixin(BaseClass) {
  * }
  * ```
+ * @mixin
  */
-export function LogLevelMixin(superclass, logLevels = defaultLogLevels, defaultLogLevel = defaultLogLevels.info) {
+export function LogLevelMixin(
+  superclass,
+  logLevels = defaultLogLevels,
+  defaultLogLevel = defaultLogLevels.info
+) {
   return class extends superclass {
     /**
      * set the log level to the default
@@ -134,18 +157,22 @@ export function LogLevelMixin(superclass, logLevels = defaultLogLevels, defaultL
  * @param {object} [logLevels=defaultLogLevels] Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels
  * @param {string} [defaultLogLevel=info] the default value for the properties; defaults to `info`
  */
-export function defineLogLevelProperties(object, logLevels = defaultLogLevels, defaultLogLevel = defaultLogLevels.info) {
+export function defineLogLevelProperties(
+  object,
+  logLevels = defaultLogLevels,
+  defaultLogLevel = defaultLogLevels.info
+) {
   const properties = {};
 
   let logLevel = defaultLogLevel;
 
   properties.logLevel = {
     get() {
-        return logLevel.name;
-      },
-      set(level) {
-        logLevel = logLevels[level] || defaultLogLevel;
-      }
+      return logLevel.name;
+    },
+    set(level) {
+      logLevel = logLevels[level] || defaultLogLevel;
+    }
   };
 
   properties.logLevelPriority = {
