@@ -61,19 +61,23 @@ describe('makeLogEvent', () => {
   });
 
   describe('object and additional object', () => {
-    const le = llm.makeLogEvent('error', {
-      message: 'the message',
-      key2: 'value2',
-      key3: 'value2'
-    }, {
-      key1: 'value1',
-      key3: 'value3'
-    });
-    it('has timestamp', () => assert.closeTo(le.timestamp, Date.now(), 100));
+    const le = llm.makeLogEvent(
+      'error',
+      {
+        message: 'the message',
+        key2: 'value2',
+        key3: 'value2'
+      },
+      {
+        key1: 'value1',
+        key3: 'value3'
+      }
+    );
+    it('has timestamp', () => assert.closeTo(le.timestamp, Date.now(), 200));
     it('has level', () => assert.equal(le.level, 'error'));
     it('has message', () => assert.equal(le.message, 'the message'));
     it('has additional values 1', () => assert.equal(le.key1, 'value1'));
     it('has additional values 2', () => assert.equal(le.key2, 'value2'));
-    it('has additional values 3', () => assert.equal(le.key3, "value3"));
+    it('has additional values 3', () => assert.equal(le.key3, 'value3'));
   });
 });
