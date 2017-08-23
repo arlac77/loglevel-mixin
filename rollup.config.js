@@ -1,5 +1,4 @@
-/* jslint node: true, esnext: true */
-'use strict';
+import pkg from './package.json';
 
 export default {
   plugins: [],
