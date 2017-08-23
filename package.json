@@ -9,10 +9,10 @@
     "docs": "jsdoc2md -l off -t doc/README.hbs -f src/*.js >README.md",
     "test": "mocha tests/*_test.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "prepublish": "rollup --output=dist/LogLevelMixin.js -c -- src/LogLevelMixin.js",
-    "pretest": "npm run prepublish",
+    "pretest": "rollup -c",
     "posttest": "markdown-doctest",
-    "precover": "npm run prepublish"
+    "precover": "rollup -c",
+    "prepare": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -28,16 +28,13 @@
     "markdown-doctest": "^0.9.1",
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
-    "rollup": "^0.47.6",
+    "rollup": "^0.48.2",
     "semantic-release": "^7.0.2"
   },
   "release": {
     "verifyRelease": "cracks"
   },
-  "keywords": [
-    "loglevel",
-    "logging"
-  ],
+  "keywords": ["loglevel", "logging"],
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/arlac77/loglevel-mixin/issues"
@@ -51,12 +48,8 @@
     }
   ],
   "nyc": {
-    "include": [
-      "dist/**/*.js"
-    ],
-    "reporter": [
-      "lcov"
-    ],
+    "include": ["dist/**/*.js"],
+    "reporter": ["lcov"],
     "report-dir": "./coverage"
   },
   "template": {
