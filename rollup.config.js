@@ -2,6 +2,11 @@
 'use strict';
 
 export default {
-  format: 'cjs',
-  plugins: []
+  plugins: [],
+  input: pkg.module,
+
+  output: {
+    format: 'cjs',
+    file: pkg.main
+  }
 };
