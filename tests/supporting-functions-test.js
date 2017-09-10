@@ -8,7 +8,7 @@ const chai = require('chai'),
   expect = chai.expect,
   should = chai.should();
 
-const llm = require('../dist/LogLevelMixin');
+const llm = require('../dist/loglevel-mixin');
 
 describe('makeLogEvent', () => {
   describe('plain', () => {

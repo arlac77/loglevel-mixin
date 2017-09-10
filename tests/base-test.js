@@ -8,27 +8,37 @@ const chai = require('chai'),
   expect = chai.expect,
   should = chai.should();
 
-const llm = require('../dist/LogLevelMixin');
+const llm = require('../dist/loglevel-mixin');
 
-describe('logging with classes', () => {
+describe('logging', () => {
   let theValue = 0;
   let theLevel = 'none';
 
-  class BaseClass {}
-
-  llm.defineLoggerMethods(BaseClass.prototype, llm.defaultLogLevels);
-  class LoggingEnabledBaseClass extends llm.LogLevelMixin(BaseClass, llm.defaultLogLevels,
-    llm.defaultLogLevels.info) {
-    log(level, message) {
+  const someObject = {};
+  const someOtherObject = {
+    log(level, args) {
       theLevel = level;
-      theValue = message;
+      theValue = args;
     }
-  }
+  };
 
-  const someObject = new LoggingEnabledBaseClass();
-  const someOtherObject = new LoggingEnabledBaseClass();
+  llm.defineLoggerMethods(someObject, llm.defaultLogLevels, function(
+    level,
+    message
+  ) {
+    theLevel = level;
+    theValue = message;
+  });
+  llm.defineLogLevelProperties(
+    someObject,
+    llm.defaultLogLevels,
+    llm.defaultLogLevels.info
+  );
 
-  describe('levels', function () {
+  llm.defineLoggerMethods(someOtherObject);
+  llm.defineLogLevelProperties(someOtherObject);
+
+  describe('levels', () => {
     it('default info', () => assert.equal(someObject.logLevel, 'info'));
 
     it('set invalid fallback info', () => {
@@ -36,7 +46,15 @@ describe('logging with classes', () => {
       assert.equal(someObject.logLevel, 'info');
     });
 
-    ['trace', 'debug', 'error', 'notice', 'warn', 'debug', 'info'].forEach(level => {
+    [
+      'trace',
+      'debug',
+      'error',
+      'notice',
+      'warn',
+      'debug',
+      'info'
+    ].forEach(level => {
       it(`set ${level}`, () => {
         someObject.logLevel = level;
         assert.equal(someObject.logLevel, level);
@@ -50,7 +68,7 @@ describe('logging with classes', () => {
     });
   });
 
-  describe('logging with levels', function () {
+  describe('logging with levels', () => {
     it('info passes', () => {
       someObject.info(level => 'info message');
       assert.equal(theValue, 'info message');

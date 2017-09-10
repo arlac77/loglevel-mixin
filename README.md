@@ -18,7 +18,9 @@
 loglevel-mixin
 ==============
 
-Injects methods named after a set of logLevels which are only forwarding messages if the current logLevel is higher or equal to the logLevel the name of the called method reflects.
+Injects methods named after a set of logLevels which are only forwarding messages.
+If the current logLevel is higher or equal to the logLevel the name of the called method reflects.
+
 
 usage
 =====
