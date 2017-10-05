@@ -1,38 +1,29 @@
-import {
-  LogLevelMixin,
-  defineLoggerMethods,
-  defaultLogLevels,
-  defineLogLevelProperties
-} from '../src/loglevel-mixin';
+import { LogLevelMixin } from '../src/loglevel-mixin';
 
 import test from 'ava';
 
-function prepare() {
-  return new LogLevelMixin(
-    class BaseClass {
-      log(level, message) {
-        this.theLevel = level;
-        this.theValue = message;
-      }
-    },
-    defaultLogLevels,
-    defaultLogLevels.info
-  );
-}
+class LoggingEnabledClass extends LogLevelMixin(
+  class BaseClass {
+    log(level, message) {
+      this.theLevel = level;
+      this.theValue = message;
+    }
+  }
+) {}
 
 test('class default info', t => {
-  const someObject = prepare();
+  const someObject = new LoggingEnabledClass();
   t.is(someObject.logLevel, 'info');
 });
 
 test('class set invalid fallback info', t => {
-  const someObject = prepare();
+  const someObject = new LoggingEnabledClass();
   someObject.logLevel = 'unknown';
   t.is(someObject.logLevel, 'info');
 });
 
 test('class set levels', t => {
-  const someObject = prepare();
+  const someObject = new LoggingEnabledClass();
 
   [
     'trace',
@@ -48,30 +39,30 @@ test('class set levels', t => {
   });
 });
 
-/*
-    it('default info', () => {
-      someOtherObject.logLevel = 'trace';
-      assert.equal(someOtherObject.logLevel, 'trace');
-      assert.equal(someObject.logLevel, 'info');
-    });
-  });
-
-  describe('logging with levels', function() {
-    it('info passes', () => {
-      someObject.info(level => 'info message');
-      assert.equal(theValue, 'info message');
-      assert.equal(theLevel, 'info');
-    });
-    it('trace ignored', () => {
-      someObject.trace(level => 'trace message');
-      assert.equal(theValue, 'info message');
-      assert.equal(theLevel, 'info');
-    });
-    it('error passes', () => {
-      someObject.error('error message');
-      assert.equal(theValue, 'error message');
-      assert.equal(theLevel, 'error');
-    });
-  });
+test('class default info not shared', t => {
+  const someObject = new LoggingEnabledClass();
+  const someOtherObject = new LoggingEnabledClass();
+  someOtherObject.logLevel = 'trace';
+  t.is(someObject.logLevel, 'info');
 });
-*/
+
+test('class logging info passes', t => {
+  const someObject = new LoggingEnabledClass();
+  someObject.info(level => 'info message');
+  t.is(someObject.theValue, 'info message');
+  t.is(someObject.theLevel, 'info');
+});
+
+test('class logging error passes', t => {
+  const someObject = new LoggingEnabledClass();
+  someObject.error(level => 'error message');
+  t.is(someObject.theValue, 'error message');
+  t.is(someObject.theLevel, 'error');
+});
+
+test('class logging trace ignored', t => {
+  const someObject = new LoggingEnabledClass();
+  someObject.trace(level => 'trace message');
+  t.is(someObject.theValue, undefined);
+  t.is(someObject.theLevel, undefined);
+});
