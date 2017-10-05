@@ -45,14 +45,10 @@ works for ES2015 classes to
 ```javascript
 const llm = require('loglevel-mixin');
 
-class BaseClass {
+const LoggingEnabledClass = llm.LogLevelMixin(class BaseClass
+{
   log(level, message) { console.log(`${level} ${message}`); }
-}
-
-llm.defineLoggerMethods(BaseClass.prototype);
-
-class LoggingEnabledClass extends llm.LogLevelMixin(BaseClass) {
-}
+});
 
 const someObject = new LoggingEnabledClass();
 
@@ -79,7 +75,7 @@ npm install loglevel-mixin
 ## loglevel-mixin.declareLevels(list) ⇒ <code>object</code>
 Generate the loglevel objects out of a list of log level names.
 
-**Kind**: static method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
+**Kind**: static method of [<code>loglevel-mixin</code>](#module_loglevel-mixin)  
 **Returns**: <code>object</code> - levels object A hash with all the loglevels. Stored by there name.  
 
 | Param | Type | Description |
@@ -93,7 +89,7 @@ Generate the loglevel objects out of a list of log level names.
 Adds logging methods to an existing object.
 For each loglevel a method with the name of the log level will be created.
 
-**Kind**: static method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
+**Kind**: static method of [<code>loglevel-mixin</code>](#module_loglevel-mixin)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -109,7 +105,7 @@ Declares two properties:
  logLevel {string} `info`,`error`,...
  logLevelPriority {number}
 
-**Kind**: static method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
+**Kind**: static method of [<code>loglevel-mixin</code>](#module_loglevel-mixin)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -123,13 +119,13 @@ Declares two properties:
 ## loglevel-mixin.makeLogEvent(level, arg, [args]) ⇒ <code>object</code>
 Helper function to aggregate values into a log event
 
-**Kind**: static method of <code>[loglevel-mixin](#module_loglevel-mixin)</code>  
+**Kind**: static method of [<code>loglevel-mixin</code>](#module_loglevel-mixin)  
 **Returns**: <code>object</code> - suitable for log event processing  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | level | <code>string</code> | log level |
-| arg | <code>string</code> &#124; <code>object</code> | original log message - level and timestamp may be overwritten |
+| arg | <code>string</code> \| <code>object</code> | original log message - level and timestamp may be overwritten |
 | [args] | <code>object</code> | additional values to be merged into the final log event - values have precedence |
 
 

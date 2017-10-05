@@ -14,19 +14,16 @@ describe('logging with classes', () => {
   let theValue = 0;
   let theLevel = 'none';
 
-  class BaseClass {}
-
-  llm.defineLoggerMethods(BaseClass.prototype, llm.defaultLogLevels);
-  class LoggingEnabledBaseClass extends llm.LogLevelMixin(
-    BaseClass,
+  const LoggingEnabledBaseClass = llm.LogLevelMixin(
+    class BaseClass {
+      log(level, message) {
+        theLevel = level;
+        theValue = message;
+      }
+    },
     llm.defaultLogLevels,
     llm.defaultLogLevels.info
-  ) {
-    log(level, message) {
-      theLevel = level;
-      theValue = message;
-    }
-  }
+  );
 
   const someObject = new LoggingEnabledBaseClass();
   const someOtherObject = new LoggingEnabledBaseClass();

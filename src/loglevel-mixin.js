@@ -110,7 +110,7 @@ export function LogLevelMixin(
   logLevels = defaultLogLevels,
   defaultLogLevel = defaultLogLevels.info
 ) {
-  return class extends superclass {
+  const newClass = class extends superclass {
     /**
      * set the log level to the default
      */
@@ -142,6 +142,9 @@ export function LogLevelMixin(
       return this._logLevel.priority;
     }
   };
+
+  defineLoggerMethods(newClass.prototype, logLevels);
+  return newClass;
 }
 
 /**

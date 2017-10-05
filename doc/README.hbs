@@ -45,14 +45,10 @@ works for ES2015 classes to
 ```javascript
 const llm = require('loglevel-mixin');
 
-class BaseClass {
+const LoggingEnabledClass = llm.LogLevelMixin(class BaseClass
+{
   log(level, message) { console.log(`${level} ${message}`); }
-}
-
-llm.defineLoggerMethods(BaseClass.prototype);
-
-class LoggingEnabledClass extends llm.LogLevelMixin(BaseClass) {
-}
+});
 
 const someObject = new LoggingEnabledClass();
 
