@@ -1,56 +1,54 @@
-/* global describe, it*/
-/* jslint node: true, esnext: true */
+import {
+  LogLevelMixin,
+  defineLoggerMethods,
+  defaultLogLevels,
+  defineLogLevelProperties
+} from '../src/loglevel-mixin';
 
-'use strict';
+import test from 'ava';
 
-const chai = require('chai'),
-  assert = chai.assert,
-  expect = chai.expect,
-  should = chai.should();
-
-const llm = require('../dist/loglevel-mixin');
-
-describe('logging with classes', () => {
-  let theValue = 0;
-  let theLevel = 'none';
-
-  const LoggingEnabledBaseClass = llm.LogLevelMixin(
+function prepare() {
+  return new LogLevelMixin(
     class BaseClass {
       log(level, message) {
-        theLevel = level;
-        theValue = message;
+        this.theLevel = level;
+        this.theValue = message;
       }
     },
-    llm.defaultLogLevels,
-    llm.defaultLogLevels.info
+    defaultLogLevels,
+    defaultLogLevels.info
   );
+}
 
-  const someObject = new LoggingEnabledBaseClass();
-  const someOtherObject = new LoggingEnabledBaseClass();
+test('class default info', t => {
+  const someObject = prepare();
+  t.is(someObject.logLevel, 'info');
+});
 
-  describe('levels', function() {
-    it('default info', () => assert.equal(someObject.logLevel, 'info'));
+test('class set invalid fallback info', t => {
+  const someObject = prepare();
+  someObject.logLevel = 'unknown';
+  t.is(someObject.logLevel, 'info');
+});
 
-    it('set invalid fallback info', () => {
-      someObject.logLevel = 'unknown';
-      assert.equal(someObject.logLevel, 'info');
-    });
+test('class set levels', t => {
+  const someObject = prepare();
 
-    [
-      'trace',
-      'debug',
-      'error',
-      'notice',
-      'warn',
-      'debug',
-      'info'
-    ].forEach(level => {
-      it(`set ${level}`, () => {
-        someObject.logLevel = level;
-        assert.equal(someObject.logLevel, level);
-      });
-    });
+  [
+    'trace',
+    'debug',
+    'error',
+    'notice',
+    'warn',
+    'debug',
+    'info'
+  ].forEach(level => {
+    someObject.logLevel = level;
+    t.is(someObject.logLevel, level);
+  });
+});
 
+/*
     it('default info', () => {
       someOtherObject.logLevel = 'trace';
       assert.equal(someOtherObject.logLevel, 'trace');
@@ -76,3 +74,4 @@ describe('logging with classes', () => {
     });
   });
 });
+*/

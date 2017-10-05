@@ -1,88 +1,94 @@
-/* global describe, it*/
-/* jslint node: true, esnext: true */
+import {
+  defineLoggerMethods,
+  defaultLogLevels,
+  defineLogLevelProperties
+} from '../src/loglevel-mixin';
 
-'use strict';
+import test from 'ava';
 
-const chai = require('chai'),
-  assert = chai.assert,
-  expect = chai.expect,
-  should = chai.should();
-
-const llm = require('../dist/loglevel-mixin');
-
-describe('logging', () => {
+function prepare() {
+  /*
   let theValue = 0;
   let theLevel = 'none';
+*/
 
   const someObject = {};
   const someOtherObject = {
     log(level, args) {
-      theLevel = level;
-      theValue = args;
+      someOtherObject.theLevel = level;
+      someOtherObject.theValue = args;
     }
   };
 
-  llm.defineLoggerMethods(someObject, llm.defaultLogLevels, function(
-    level,
-    message
-  ) {
-    theLevel = level;
-    theValue = message;
+  defineLoggerMethods(someObject, defaultLogLevels, function(level, message) {
+    someObject.theLevel = level;
+    someObject.theValue = message;
   });
-  llm.defineLogLevelProperties(
-    someObject,
-    llm.defaultLogLevels,
-    llm.defaultLogLevels.info
-  );
+  defineLogLevelProperties(someObject, defaultLogLevels, defaultLogLevels.info);
 
-  llm.defineLoggerMethods(someOtherObject);
-  llm.defineLogLevelProperties(someOtherObject);
+  defineLoggerMethods(someOtherObject);
+  defineLogLevelProperties(someOtherObject);
 
-  describe('levels', () => {
-    it('default info', () => assert.equal(someObject.logLevel, 'info'));
+  return { someObject, someOtherObject };
+}
 
-    it('set invalid fallback info', () => {
-      someObject.logLevel = 'unknown';
-      assert.equal(someObject.logLevel, 'info');
-    });
+test('default info', t => {
+  const { someObject } = prepare();
+  t.is(someObject.logLevel, 'info');
+});
 
-    [
-      'trace',
-      'debug',
-      'error',
-      'notice',
-      'warn',
-      'debug',
-      'info'
-    ].forEach(level => {
-      it(`set ${level}`, () => {
-        someObject.logLevel = level;
-        assert.equal(someObject.logLevel, level);
-      });
-    });
+test('levels set invalid fallback info', t => {
+  const { someObject } = prepare();
 
-    it('default info', () => {
-      someOtherObject.logLevel = 'trace';
-      assert.equal(someOtherObject.logLevel, 'trace');
-      assert.equal(someObject.logLevel, 'info');
-    });
+  someObject.logLevel = 'unknown';
+  t.is(someObject.logLevel, 'info');
+});
+
+test('levels', t => {
+  const { someObject } = prepare();
+
+  [
+    'trace',
+    'debug',
+    'error',
+    'notice',
+    'warn',
+    'debug',
+    'info'
+  ].forEach(level => {
+    someObject.logLevel = level;
+    t.is(someObject.logLevel, level);
   });
+});
 
-  describe('logging with levels', () => {
-    it('info passes', () => {
-      someObject.info(level => 'info message');
-      assert.equal(theValue, 'info message');
-      assert.equal(theLevel, 'info');
-    });
-    it('trace ignored', () => {
-      someObject.trace(level => 'trace message');
-      assert.equal(theValue, 'info message');
-      assert.equal(theLevel, 'info');
-    });
-    it('error passes', () => {
-      someObject.error('error message');
-      assert.equal(theValue, 'error message');
-      assert.equal(theLevel, 'error');
-    });
-  });
+test('levels default info', t => {
+  const { someObject, someOtherObject } = prepare();
+
+  someOtherObject.logLevel = 'trace';
+  t.is(someOtherObject.logLevel, 'trace');
+  t.is(someObject.logLevel, 'info');
+});
+
+test('logging with levels info passes', t => {
+  const { someObject } = prepare();
+
+  someObject.info(level => 'info message');
+  t.is(someObject.theValue, 'info message');
+  t.is(someObject.theLevel, 'info');
+});
+
+test('logging with levels trace ignore', t => {
+  const { someObject } = prepare();
+
+  someObject.trace(level => 'trace message');
+  t.is(someObject.theValue, undefined);
+  t.is(someObject.theLevel, undefined);
+});
+
+test('logging with levels error passes', t => {
+  const { someObject } = prepare();
+
+  someObject.error(level => 'error message');
+  t.is(someObject.theValue, 'error message');
+  t.is(someObject.theLevel, 'error');
 });
