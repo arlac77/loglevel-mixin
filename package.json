@@ -1,14 +1,16 @@
 {
   "name": "loglevel-mixin",
-  "version": "2.0.1",
-  "description": "mixin to declare logging methods named after a set of log levels",
+  "version": "0.0.0-semantic-release",
+  "description":
+    "mixin to declare logging methods named after a set of log levels",
   "main": "dist/loglevel-mixin.js",
   "module": "src/loglevel-mixin.js",
   "scripts": {
     "cover": "nyc npm test",
     "docs": "jsdoc2md -l off -t doc/README.hbs -f src/*.js >README.md",
     "test": "mocha tests/*-test.js",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release":
+      "semantic-release pre && npm publish && semantic-release post",
     "pretest": "rollup -c",
     "posttest": "markdown-doctest",
     "precover": "rollup -c",
@@ -34,10 +36,7 @@
   "release": {
     "verifyRelease": "cracks"
   },
-  "keywords": [
-    "loglevel",
-    "logging"
-  ],
+  "keywords": ["loglevel", "logging"],
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/arlac77/loglevel-mixin/issues"
@@ -51,12 +50,8 @@
     }
   ],
   "nyc": {
-    "include": [
-      "dist/**/*.js"
-    ],
-    "reporter": [
-      "lcov"
-    ],
+    "include": ["dist/**/*.js"],
+    "reporter": ["lcov"],
     "report-dir": "./coverage"
   },
   "template": {
