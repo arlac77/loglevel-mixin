@@ -2,16 +2,20 @@ import { makeLogEvent } from '../src/loglevel-mixin';
 
 import test from 'ava';
 
+function sameDate(a, b) {
+  return (a > b ? a - b : b - a) < 100;
+}
+
 test('makeLogEvent plain', t => {
   const le = makeLogEvent('error', 'the message');
-  t.is(le.timestamp, Date.now(), 100);
+  t.truthy(sameDate(Date.now(), le.timestamp));
   t.is(le.level, 'error');
   t.is(le.message, 'the message');
 });
 
 test('makeLogEvent empty', t => {
   const le = makeLogEvent('error');
-  t.is(le.timestamp, Date.now(), 100);
+  t.truthy(sameDate(le.timestamp, Date.now()));
   t.is(le.level, 'error');
   t.is(le.message, undefined);
 });
@@ -42,7 +46,7 @@ test('makeLogEvent with additional object', t => {
   const le = makeLogEvent('error', 'the message', {
     key1: 'value1'
   });
-  t.is(le.timestamp, Date.now(), 100);
+  t.truthy(sameDate(le.timestamp, Date.now()));
   t.is(le.level, 'error');
   t.is(le.message, 'the message');
   t.is(le.key1, 'value1');
@@ -62,7 +66,7 @@ test('makeLogEvent with additional object deepth', t => {
     }
   );
 
-  t.is(le.timestamp, Date.now(), 100);
+  t.truthy(sameDate(le.timestamp, Date.now()));
   t.is(le.level, 'error');
   t.is(le.message, 'the message');
   t.is(le.key1, 'value1');
