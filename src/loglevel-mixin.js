@@ -59,26 +59,27 @@ export function defineLoggerMethods(
     const levelName = level;
     properties[levelName] = {
       value:
-        theFunction !== undefined
+        theFunction === undefined
           ? function(providerFunction) {
-              if (this.logLevelPriority >= myLevel)
-                if (typeof providerFunction === 'function') {
-                  theFunction.call(
-                    this,
-                    levelName,
-                    providerFunction(levelName)
-                  );
-                } else {
-                  theFunction.call(this, levelName, providerFunction);
-                }
+              if (this.logLevelPriority >= myLevel) {
+                this.log(
+                  levelName,
+                  typeof providerFunction === 'function'
+                    ? providerFunction(levelName)
+                    : providerFunction
+                );
+              }
             }
           : function(providerFunction) {
-              if (this.logLevelPriority >= myLevel)
-                if (typeof providerFunction === 'function') {
-                  this.log(levelName, providerFunction(levelName));
-                } else {
-                  this.log(levelName, providerFunction);
-                }
+              if (this.logLevelPriority >= myLevel) {
+                theFunction.call(
+                  this,
+                  levelName,
+                  typeof providerFunction === 'function'
+                    ? providerFunction(levelName)
+                    : providerFunction
+                );
+              }
             },
       enumerable: true
     };
