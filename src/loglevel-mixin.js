@@ -88,6 +88,8 @@ export function defineLoggerMethods(
   Object.defineProperties(object, properties);
 }
 
+const LOGLEVEL = Symbol('loglevel');
+
 /**
  * @class
  * @classdesc This function is a mixin for ES2015 classes.
@@ -117,30 +119,30 @@ export function LogLevelMixin(
      */
     constructor(...args) {
       super(...args);
-      this._logLevel = defaultLogLevel;
+      this[LOGLEVEL] = defaultLogLevel;
     }
 
     /**
      * @return {string} name of the current log level
      */
     get logLevel() {
-      return this._logLevel.name;
+      return this[LOGLEVEL].name;
     }
 
     /**
      * Set the logging level.
-     * if an unknown logLEvel is given the default logLevel will be used.
+     * if an unknown logLevel is given the default logLevel will be used.
      * @param {string} level
      */
     set logLevel(level) {
-      this._logLevel = logLevels[level] || defaultLogLevel;
+      this[LOGLEVEL] = logLevels[level] || defaultLogLevel;
     }
 
     /**
      * @return {number} priority of the current log level
      */
     get logLevelPriority() {
-      return this._logLevel.priority;
+      return this[LOGLEVEL].priority;
     }
   };
 
