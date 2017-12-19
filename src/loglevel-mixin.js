@@ -19,7 +19,7 @@ export const defaultLogLevels = declareLevels([
 /**
  * Generate the loglevel objects out of a list of log level names.
  * @param {string[]} list A list of log level names. The last name in the list will become the one with the highest priority.
- * @return {object} levels object A hash with all the loglevels. Stored by there name.
+ * @return {Object} levels object A hash with all the loglevels. Stored by there name.
  */
 export function declareLevels(list) {
   const levels = {};
@@ -39,8 +39,8 @@ export function declareLevels(list) {
 /**
  * Adds logging methods to an existing object.
  * For each loglevel a method with the name of the log level will be created.
- * @param {object} object target where to assign properties to
- * @param {object} logLevels Hash with all the available loglevels. Stored by there name
+ * @param {Object} object target where to assign properties to
+ * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
  * @param {function} [theFunction] The function to be added under the loglevel name.
  *        This function will only be called if the current loglevel is greater equal
  *        the log level of the called logging function.
@@ -94,7 +94,7 @@ const LOGLEVEL = Symbol('loglevel');
  * @class
  * @classdesc This function is a mixin for ES2015 classes.
  * @param {class} superclass class to be extendet
- * @param {object} [logLevels] Object with all the available loglevels. Stored by their name; defaults to defaultLogLevels
+ * @param {Object} [logLevels] Object with all the available loglevels. Stored by their name; defaults to defaultLogLevels
  * @param {string} [defaultLogLevel] the default value for the logLevel property; defaults to `info`
  * @return {class} newly created class ready to be further extendet/used
  * @example
@@ -155,8 +155,8 @@ export function LogLevelMixin(
  *  logLevel {string} `info`,`error`,...
  *  logLevelPriority {number}
  *
- * @param {object} object target where the properties will be written into
- * @param {object} [logLevels=defaultLogLevels] Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels
+ * @param {Object} object target where the properties will be written into
+ * @param {Object} [logLevels=defaultLogLevels] Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels
  * @param {string} [defaultLogLevel=info] the default value for the properties; defaults to `info`
  */
 export function defineLogLevelProperties(
@@ -189,9 +189,9 @@ export function defineLogLevelProperties(
 /**
  * Helper function to aggregate values into a log event
  * @param {string} level log level
- * @param {string|object} arg original log message - level and timestamp may be overwritten
- * @param {object} [args] additional values to be merged into the final log event - values have precedence
- * @return {object} suitable for log event processing
+ * @param {string|Object} arg original log message - level and timestamp may be overwritten
+ * @param {Object} [args] additional values to be merged into the final log event - values have precedence
+ * @return {Object} suitable for log event processing
  */
 export function makeLogEvent(level, arg, args) {
   const logevent = {
