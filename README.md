@@ -89,7 +89,7 @@ Generate the loglevel objects out of a list of log level names.
 
 -   `list` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** A list of log level names. The last name in the list will become the one with the highest priority.
 
-Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** levels object A hash with all the loglevels. Stored by there name.
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** levels object A hash with all the loglevels. Stored by there name.
 
 ## defineLoggerMethods
 
@@ -98,8 +98,8 @@ For each loglevel a method with the name of the log level will be created.
 
 **Parameters**
 
--   `object` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where to assign properties to
--   `logLevels` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where to assign properties to
+-   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
 -   `theFunction` **[function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** The function to be added under the loglevel name.
            This function will only be called if the current loglevel is greater equal
            the log level of the called logging function.
@@ -112,7 +112,7 @@ Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Referenc
 **Parameters**
 
 -   `superclass` **class** class to be extendet
--   `logLevels` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Object with all the available loglevels. Stored by their name; defaults to defaultLogLevels (optional, default `defaultLogLevels`)
+-   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Object with all the available loglevels. Stored by their name; defaults to defaultLogLevels (optional, default `defaultLogLevels`)
 -   `defaultLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** the default value for the logLevel property; defaults to `info` (optional, default `defaultLogLevels.info`)
 
 **Examples**
@@ -138,8 +138,8 @@ Declares two properties:
 
 **Parameters**
 
--   `object` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where the properties will be written into
--   `logLevels` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels (optional, default `defaultLogLevels`)
+-   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where the properties will be written into
+-   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels (optional, default `defaultLogLevels`)
 -   `defaultLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the properties; defaults to `info` (optional, default `info`)
 
 ## makeLogEvent
@@ -149,10 +149,10 @@ Helper function to aggregate values into a log event
 **Parameters**
 
 -   `level` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** log level
--   `arg` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object))** original log message - level and timestamp may be overwritten
--   `args` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** additional values to be merged into the final log event - values have precedence
+-   `arg` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object))** original log message - level and timestamp may be overwritten
+-   `args` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** additional values to be merged into the final log event - values have precedence
 
-Returns **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** suitable for log event processing
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** suitable for log event processing
 
 # license
 
