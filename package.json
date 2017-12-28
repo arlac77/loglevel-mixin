@@ -1,9 +1,20 @@
 {
   "name": "loglevel-mixin",
   "version": "0.0.0-semantic-release",
-  "description": "mixin to declare logging methods named after a set of log levels",
   "main": "dist/loglevel-mixin.js",
   "module": "src/loglevel-mixin.js",
+  "description": "mixin to declare logging methods named after a set of log levels",
+  "keywords": [
+    "loglevel",
+    "logging"
+  ],
+  "contributors": [
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
+  "license": "BSD-2-Clause",
   "scripts": {
     "cover": "nyc --temp-directory build/nyc ava",
     "docs": "documentation readme src/loglevel-mixin.js --section=API",
@@ -15,13 +26,7 @@
     "precover": "rollup -c tests/rollup.config.js",
     "prepare": "rollup -c"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/arlac77/loglevel-mixin.git"
-  },
-  "engines": {
-    "node": ">=8.9.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "ava": "^0.24.0",
     "cracks": "3.1.2",
@@ -32,41 +37,19 @@
     "semantic-release": "^11.1.0",
     "xo": "^0.19.0"
   },
-  "release": {
-    "verifyRelease": "cracks"
+  "engines": {
+    "node": ">=8.9.3"
   },
-  "keywords": [
-    "loglevel",
-    "logging"
-  ],
-  "license": "BSD-2-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arlac77/loglevel-mixin.git"
+  },
   "bugs": {
     "url": "https://github.com/arlac77/loglevel-mixin/issues"
   },
   "homepage": "https://github.com/arlac77/loglevel-mixin#readme",
-  "dependencies": {},
-  "contributors": [
-    {
-      "name": "Markus Felten",
-      "email": "markus.felten@gmx.de"
-    }
-  ],
-  "nyc": {
-    "include": [
-      "build/*-test.js"
-    ],
-    "reporter": [
-      "lcov"
-    ],
-    "report-dir": "./build/coverage"
-  },
-  "template": {
-    "repository": {
-      "url": "https://github.com/arlac77/npm-package-template.git"
-    }
-  },
-  "xo": {
-    "space": true
+  "release": {
+    "verifyRelease": "cracks"
   },
   "ava": {
     "files": [
@@ -78,5 +61,22 @@
     "require": [
       "babel-register"
     ]
+  },
+  "nyc": {
+    "include": [
+      "build/*-test.js"
+    ],
+    "reporter": [
+      "lcov"
+    ],
+    "report-dir": "./build/coverage"
+  },
+  "xo": {
+    "space": true
+  },
+  "template": {
+    "repository": {
+      "url": "https://github.com/arlac77/npm-package-template.git"
+    }
   }
 }
