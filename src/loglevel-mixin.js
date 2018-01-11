@@ -3,7 +3,26 @@
  */
 
 /**
+ * @callback Logger
+ * @property {Object} entry
+ */
+
+/**
+ * @typedef {Object} Loglevel
+ * @property {string} name
+ * @property {number} priority
+ */
+
+/**
  * default log levels
+ * - trace
+ * - debug
+ * - info
+ * - notice
+ * - warn
+ * - error
+ * - crit
+ * - alert
  */
 export const defaultLogLevels = declareLevels([
   'trace',
@@ -27,8 +46,8 @@ export function declareLevels(list) {
 
   list.forEach(name => {
     levels[name] = {
-      name: name,
-      priority: priority
+      name,
+      priority
     };
     priority -= 1;
   });
@@ -37,15 +56,20 @@ export function declareLevels(list) {
 }
 
 /**
+ * <!-- skip-example -->
  * Adds logging methods to an existing object.
  * For each loglevel a method with the name of the log level will be created.
  * @param {Object} object target where to assign properties to
  * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
- * @param {function} [theFunction] The function to be added under the loglevel name.
+ * @param {Logger} theFunction to be added under the loglevel name.
  *        This function will only be called if the current loglevel is greater equal
  *        the log level of the called logging function.
  *        By default a method log(level,message) will be used
  * @return {undefined}
+ * @example
+ * defineLoggerMethods( obj)
+ * obj.info('info entry'); // will redirect to theFunction if obj.loglevel is at least info
+ * obj.error('error entry'); // will redirect to theFunction if obj.loglevel is at least error
  */
 export function defineLoggerMethods(
   object,
@@ -91,21 +115,20 @@ export function defineLoggerMethods(
 const LOGLEVEL = Symbol('loglevel');
 
 /**
+ * <!-- skip-example -->
  * @class
  * @classdesc This function is a mixin for ES2015 classes.
  * @param {class} superclass class to be extendet
- * @param {Object} [logLevels] Object with all the available loglevels. Stored by their name; defaults to defaultLogLevels
- * @param {string} [defaultLogLevel] the default value for the logLevel property; defaults to `info`
+ * @param {Object} logLevels Object with all the available loglevels. Stored by their name
+ * @param {string} defaultLogLevel the default value for the logLevel property
  * @return {class} newly created class ready to be further extendet/used
  * @example
- * ```js
  * import { LogLevelMixin } = from 'loglevel-mixin';
  * class BaseClass {
  *   log(level, message) { console.log(`${level} ${message}`); }
  * }
  * class LoggingEnabledClass extends LogLevelMixin(BaseClass) {
  * }
- * ```
  * @mixin
  */
 export function LogLevelMixin(
@@ -156,34 +179,32 @@ export function LogLevelMixin(
  *  logLevelPriority {number}
  *
  * @param {Object} object target where the properties will be written into
- * @param {Object} [logLevels=defaultLogLevels] Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels
- * @param {string} [defaultLogLevel=info] the default value for the properties; defaults to `info`
+ * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
+ * @param {string} defaultLogLevel the default value for the properties
  */
 export function defineLogLevelProperties(
   object,
   logLevels = defaultLogLevels,
   defaultLogLevel = defaultLogLevels.info
 ) {
-  const properties = {};
-
   let logLevel = defaultLogLevel;
 
-  properties.logLevel = {
-    get() {
-      return logLevel.name;
+  Object.defineProperties(object, {
+    logLevel: {
+      get() {
+        return logLevel.name;
+      },
+      set(level) {
+        logLevel = logLevels[level] || defaultLogLevel;
+      }
     },
-    set(level) {
-      logLevel = logLevels[level] || defaultLogLevel;
-    }
-  };
 
-  properties.logLevelPriority = {
-    get() {
-      return logLevel.priority;
+    logLevelPriority: {
+      get() {
+        return logLevel.priority;
+      }
     }
-  };
-
-  Object.defineProperties(object, properties);
+  });
 }
 
 /**

@@ -84,7 +84,9 @@ npm install loglevel-mixin
 ### Table of Contents
 
 -   [loglevel-mixin](#loglevel-mixin)
+-   [Loglevel](#loglevel)
 -   [defaultLogLevels](#defaultloglevels)
+-   [Logger](#logger)
 -   [declareLevels](#declarelevels)
 -   [defineLoggerMethods](#defineloggermethods)
 -   [LogLevelMixin](#loglevelmixin)
@@ -93,9 +95,35 @@ npm install loglevel-mixin
 
 ## loglevel-mixin
 
+## Loglevel
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+**Properties**
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `priority` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+
 ## defaultLogLevels
 
 default log levels
+
+-   trace
+-   debug
+-   info
+-   notice
+-   warn
+-   error
+-   crit
+-   alert
+
+## Logger
+
+Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)
+
+**Properties**
+
+-   `entry` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ## declareLevels
 
@@ -109,6 +137,8 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## defineLoggerMethods
 
+<!-- skip-example -->
+
 Adds logging methods to an existing object.
 For each loglevel a method with the name of the log level will be created.
 
@@ -116,33 +146,41 @@ For each loglevel a method with the name of the log level will be created.
 
 -   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where to assign properties to
 -   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
--   `theFunction` **[function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)?** The function to be added under the loglevel name.
+-   `theFunction` **[Logger](#logger)** to be added under the loglevel name.
            This function will only be called if the current loglevel is greater equal
            the log level of the called logging function.
            By default a method log(level,message) will be used (optional, default `undefined`)
+
+**Examples**
+
+```javascript
+defineLoggerMethods( obj)
+obj.info('info entry'); // will redirect to theFunction if obj.loglevel is at least info
+obj.error('error entry'); // will redirect to theFunction if obj.loglevel is at least error
+```
 
 Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)** 
 
 ## LogLevelMixin
 
+<!-- skip-example -->
+
 **Parameters**
 
 -   `superclass` **class** class to be extendet
--   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** Object with all the available loglevels. Stored by their name; defaults to defaultLogLevels (optional, default `defaultLogLevels`)
--   `defaultLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** the default value for the logLevel property; defaults to `info` (optional, default `defaultLogLevels.info`)
+-   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Object with all the available loglevels. Stored by their name (optional, default `defaultLogLevels`)
+-   `defaultLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the logLevel property (optional, default `defaultLogLevels.info`)
 
 **Examples**
 
-````javascript
-    ```js
-    import { LogLevelMixin } = from 'loglevel-mixin';
-    class BaseClass {
-      log(level, message) { console.log(`${level} ${message}`); }
-    }
-    class LoggingEnabledClass extends LogLevelMixin(BaseClass) {
-    }
-    ```
-````
+```javascript
+import { LogLevelMixin } = from 'loglevel-mixin';
+class BaseClass {
+  log(level, message) { console.log(`${level} ${message}`); }
+}
+class LoggingEnabledClass extends LogLevelMixin(BaseClass) {
+}
+```
 
 Returns **class** newly created class ready to be further extendet/used
 
@@ -155,8 +193,8 @@ Declares two properties:
 **Parameters**
 
 -   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where the properties will be written into
--   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name; defaults to defaultLogLevels (optional, default `defaultLogLevels`)
--   `defaultLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the properties; defaults to `info` (optional, default `info`)
+-   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
+-   `defaultLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the properties (optional, default `defaultLogLevels.info`)
 
 ## makeLogEvent
 
