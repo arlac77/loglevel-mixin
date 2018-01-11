@@ -24,7 +24,8 @@
     "pretest": "rollup -c tests/rollup.config.js",
     "posttest": "npm run prepare && markdown-doctest",
     "precover": "rollup -c tests/rollup.config.js",
-    "prepare": "rollup -c"
+    "prepare": "rollup -c",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "dependencies": {},
   "devDependencies": {
@@ -34,7 +35,8 @@
     "markdown-doctest": "^0.9.1",
     "nyc": "^11.4.1",
     "rollup": "^0.53.4",
-    "semantic-release": "^11.1.0"
+    "semantic-release": "^12.2.0",
+    "travis-deploy-once": "^4.3.0"
   },
   "engines": {
     "node": ">=8.9.4"
