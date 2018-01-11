@@ -3,11 +3,9 @@
   "version": "0.0.0-semantic-release",
   "main": "dist/loglevel-mixin.js",
   "module": "src/loglevel-mixin.js",
-  "description": "mixin to declare logging methods named after a set of log levels",
-  "keywords": [
-    "loglevel",
-    "logging"
-  ],
+  "description":
+    "mixin to declare logging methods named after a set of log levels",
+  "keywords": ["loglevel", "logging"],
   "contributors": [
     {
       "name": "Markus Felten",
@@ -49,27 +47,17 @@
     "url": "https://github.com/arlac77/loglevel-mixin/issues"
   },
   "homepage": "https://github.com/arlac77/loglevel-mixin#readme",
-  "release": {
+  "_release": {
     "verifyRelease": "cracks"
   },
   "ava": {
-    "files": [
-      "build/*-test.js"
-    ],
-    "presets": [
-      "stage-3"
-    ],
-    "require": [
-      "babel-register"
-    ]
+    "files": ["build/*-test.js"],
+    "presets": ["stage-3"],
+    "require": ["babel-register"]
   },
   "nyc": {
-    "include": [
-      "build/*-test.js"
-    ],
-    "reporter": [
-      "lcov"
-    ],
+    "include": ["build/*-test.js"],
+    "reporter": ["lcov"],
     "report-dir": "./build/coverage"
   },
   "xo": {
