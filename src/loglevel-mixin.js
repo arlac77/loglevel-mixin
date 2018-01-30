@@ -1,8 +1,4 @@
 /**
- * @module loglevel-mixin
- */
-
-/**
  * @callback Logger
  * @property {Object} entry
  */
@@ -175,8 +171,8 @@ export function LogLevelMixin(
 
 /**
  * Declares two properties:
- *  logLevel {string} `info`,`error`,...
- *  logLevelPriority {number}
+ * @property {string} logLevel `info`,`error`,...
+ * @property {number} logLevelPriority
  *
  * @param {Object} object target where the properties will be written into
  * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
