@@ -35,7 +35,7 @@
     "nyc": "^11.4.1",
     "rollup": "^0.55.3",
     "semantic-release": "^13.0.2",
-    "travis-deploy-once": "^4.3.3"
+    "travis-deploy-once": "^4.3.4"
   },
   "engines": {
     "node": ">=8.9.4"
