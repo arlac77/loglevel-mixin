@@ -129,7 +129,7 @@ Generate the loglevel objects out of a list of log level names.
 
 -   `list` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** A list of log level names. The last name in the list will become the one with the highest priority.
 
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** levels object A hash with all the loglevels. Stored by there name.
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** levels object a hash with all the loglevels. Stored by there name.
 
 ## defineLoggerMethods
 

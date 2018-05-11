@@ -34,7 +34,7 @@ export const defaultLogLevels = declareLevels([
 /**
  * Generate the loglevel objects out of a list of log level names.
  * @param {string[]} list A list of log level names. The last name in the list will become the one with the highest priority.
- * @return {Object} levels object A hash with all the loglevels. Stored by there name.
+ * @return {Object} levels object a hash with all the loglevels. Stored by there name.
  */
 export function declareLevels(list) {
   const levels = {};
