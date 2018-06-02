@@ -1,6 +1,9 @@
 {
   "name": "loglevel-mixin",
   "version": "0.0.0-semantic-release",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/loglevel-mixin.js",
   "module": "src/loglevel-mixin.js",
   "description": "mixin to declare logging methods named after a set of log levels",
