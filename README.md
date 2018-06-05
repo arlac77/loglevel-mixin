@@ -83,19 +83,29 @@ npm install loglevel-mixin
 ### Table of Contents
 
 -   [Logger](#logger)
+    -   [Properties](#properties)
 -   [defaultLogLevels](#defaultloglevels)
 -   [Loglevel](#loglevel)
+    -   [Properties](#properties-1)
 -   [declareLevels](#declarelevels)
+    -   [Parameters](#parameters)
 -   [defineLoggerMethods](#defineloggermethods)
+    -   [Parameters](#parameters-1)
+    -   [Examples](#examples)
 -   [LogLevelMixin](#loglevelmixin)
+    -   [Parameters](#parameters-2)
+    -   [Examples](#examples-1)
 -   [defineLogLevelProperties](#defineloglevelproperties)
+    -   [Parameters](#parameters-3)
+    -   [Properties](#properties-2)
 -   [makeLogEvent](#makelogevent)
+    -   [Parameters](#parameters-4)
 
 ## Logger
 
 Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)
 
-**Properties**
+### Properties
 
 -   `entry` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
@@ -116,7 +126,7 @@ default log levels
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
-**Properties**
+### Properties
 
 -   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 -   `priority` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
@@ -125,7 +135,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 Generate the loglevel objects out of a list of log level names.
 
-**Parameters**
+### Parameters
 
 -   `list` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** A list of log level names. The last name in the list will become the one with the highest priority.
 
@@ -138,7 +148,7 @@ Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 Adds logging methods to an existing object.
 For each loglevel a method with the name of the log level will be created.
 
-**Parameters**
+### Parameters
 
 -   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where to assign properties to
 -   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
@@ -147,7 +157,7 @@ For each loglevel a method with the name of the log level will be created.
            the log level of the called logging function.
            By default a method log(level,message) will be used (optional, default `undefined`)
 
-**Examples**
+### Examples
 
 ```javascript
 defineLoggerMethods( obj)
@@ -161,13 +171,13 @@ Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Referenc
 
 <!-- skip-example -->
 
-**Parameters**
+### Parameters
 
 -   `superclass` **class** class to be extendet
 -   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Object with all the available loglevels. Stored by their name (optional, default `defaultLogLevels`)
 -   `defaultLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the logLevel property (optional, default `defaultLogLevels.info`)
 
-**Examples**
+### Examples
 
 ```javascript
 import { LogLevelMixin } = from 'loglevel-mixin';
@@ -184,13 +194,13 @@ Returns **class** newly created class ready to be further extendet/used
 
 Declares two properties:
 
-**Parameters**
+### Parameters
 
 -   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where the properties will be written into
 -   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
 -   `defaultLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the properties (optional, default `defaultLogLevels.info`)
 
-**Properties**
+### Properties
 
 -   `logLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** `info`,`error`,...
 -   `logLevelPriority` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
@@ -199,7 +209,7 @@ Declares two properties:
 
 Helper function to aggregate values into a log event
 
-**Parameters**
+### Parameters
 
 -   `level` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** log level
 -   `arg` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object))** original log message - level and timestamp may be overwritten
