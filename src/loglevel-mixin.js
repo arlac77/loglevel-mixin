@@ -213,7 +213,7 @@ export function defineLogLevelProperties(
 export function makeLogEvent(level, arg, args) {
   const logevent = {
     timestamp: Date.now(),
-    level: level
+    level
   };
 
   if (typeof arg === 'string') {
