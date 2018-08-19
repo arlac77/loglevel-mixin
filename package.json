@@ -7,7 +7,10 @@
   "main": "dist/loglevel-mixin.js",
   "module": "src/loglevel-mixin.js",
   "description": "mixin to declare logging methods named after a set of log levels",
-  "keywords": ["loglevel", "logging"],
+  "keywords": [
+    "loglevel",
+    "logging"
+  ],
   "contributors": [
     {
       "name": "Markus Felten",
@@ -40,7 +43,7 @@
     "rollup-plugin-istanbul": "^2.0.1",
     "rollup-plugin-multi-entry": "^2.0.2",
     "rollup-plugin-node-resolve": "^3.3.0",
-    "semantic-release": "^15.9.8",
+    "semantic-release": "^15.9.9",
     "travis-deploy-once": "^5.0.2"
   },
   "engines": {
@@ -55,12 +58,20 @@
   },
   "homepage": "https://github.com/arlac77/loglevel-mixin#readme",
   "ava": {
-    "files": ["build/*-test.js"],
-    "require": ["babel-register"]
+    "files": [
+      "build/*-test.js"
+    ],
+    "require": [
+      "babel-register"
+    ]
   },
   "nyc": {
-    "include": ["build/*-test.js"],
-    "reporter": ["lcov"],
+    "include": [
+      "build/*-test.js"
+    ],
+    "reporter": [
+      "lcov"
+    ],
     "report-dir": "./build/coverage"
   },
   "xo": {
