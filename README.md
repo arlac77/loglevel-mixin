@@ -84,14 +84,15 @@ npm install loglevel-mixin
 
 -   [Logger](#logger)
     -   [Properties](#properties)
--   [defaultLogLevels](#defaultloglevels)
 -   [Loglevel](#loglevel)
     -   [Properties](#properties-1)
+-   [defaultLogLevels](#defaultloglevels)
 -   [declareLevels](#declarelevels)
     -   [Parameters](#parameters)
 -   [defineLoggerMethods](#defineloggermethods)
     -   [Parameters](#parameters-1)
     -   [Examples](#examples)
+-   [LOGLEVEL](#loglevel-1)
 -   [LogLevelMixin](#loglevelmixin)
     -   [Parameters](#parameters-2)
     -   [Examples](#examples-1)
@@ -109,6 +110,15 @@ Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Sta
 
 -   `entry` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
+## Loglevel
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+### Properties
+
+-   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `priority` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+
 ## defaultLogLevels
 
 default log levels
@@ -121,15 +131,6 @@ default log levels
 -   error
 -   crit
 -   alert
-
-## Loglevel
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
-
-### Properties
-
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `priority` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## declareLevels
 
@@ -166,6 +167,10 @@ obj.error('error entry'); // will redirect to theFunction if obj.loglevel is at 
 ```
 
 Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)** 
+
+## LOGLEVEL
+
+symbol holding the actual logLevel inside of the target object
 
 ## LogLevelMixin
 

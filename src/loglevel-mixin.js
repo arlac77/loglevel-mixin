@@ -108,6 +108,9 @@ export function defineLoggerMethods(
   Object.defineProperties(object, properties);
 }
 
+/**
+ * symbol holding the actual logLevel inside of the target object
+ */
 const LOGLEVEL = Symbol('loglevel');
 
 /**
