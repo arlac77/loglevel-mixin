@@ -21,8 +21,10 @@ Injects methods named after a set of logLevels which are only forwarding message
 
 # usage
 
+
+<!-- skip-example -->
 ```javascript
-const llm = require('loglevel-mixin');
+import { defineLogLevelProperties, defineLoggerMethods } from 'loglevel-mixin';
 
 let someObject = {
   log(level, message) {
@@ -30,8 +32,8 @@ let someObject = {
   }
 };
 
-llm.defineLoggerMethods(someObject);
-llm.defineLogLevelProperties(someObject);
+defineLoggerMethods(someObject);
+defineLogLevelProperties(someObject);
 
 someObject.logLevel = 'error';
 someObject.info(
@@ -45,10 +47,12 @@ someObject.info(
 
 ## works for ES2015 classes to
 
-```javascript
-const llm = require('loglevel-mixin');
 
-const LoggingEnabledClass = llm.LogLevelMixin(
+<!-- skip-example -->
+```javascript
+import { LogLevelMixin } from 'loglevel-mixin';
+
+const LoggingEnabledClass = LogLevelMixin(
   class BaseClass {
     log(level, message) {
       console.log(`${level} ${message}`);

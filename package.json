@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/loglevel-mixin.js",
+  "main": "src/loglevel-mixin.mjs",
   "module": "src/loglevel-mixin.mjs",
   "description": "mixin to declare logging methods named after a set of log levels",
   "keywords": [
@@ -23,7 +23,7 @@
     "docs": "documentation readme src/loglevel-mixin.mjs --section=API",
     "lint": "documentation lint src/loglevel-mixin.mjs",
     "test": "ava",
-    "posttest": "markdown-doctest && npm run prepare"
+    "posttest": "markdown-doctest"
   },
   "dependencies": {},
   "devDependencies": {
@@ -64,8 +64,5 @@
     "repository": {
       "url": "https://github.com/arlac77/npm-package-template-esm-only.git"
     }
-  },
-  "_release": {
-    "verifyRelease": "cracks"
   }
 }
