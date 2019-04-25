@@ -18,8 +18,8 @@ Injects methods named after a set of logLevels which are only forwarding message
 
 # usage
 
-
 <!-- skip-example -->
+
 ```javascript
 import { defineLogLevelProperties, defineLoggerMethods } from 'loglevel-mixin';
 
@@ -44,8 +44,8 @@ someObject.info(
 
 ## works for ES2015 classes to
 
-
 <!-- skip-example -->
+
 ```javascript
 import { LogLevelMixin } from 'loglevel-mixin';
 

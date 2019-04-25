@@ -2,7 +2,7 @@ import {
   defineLoggerMethods,
   defaultLogLevels,
   defineLogLevelProperties
-} from '../src/loglevel-mixin';
+} from '../src/loglevel-mixin.mjs';
 
 import test from 'ava';
 

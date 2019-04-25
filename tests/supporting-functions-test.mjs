@@ -1,4 +1,4 @@
-import { makeLogEvent } from '../src/loglevel-mixin';
+import { makeLogEvent } from '../src/loglevel-mixin.mjs';
 
 import test from 'ava';
 

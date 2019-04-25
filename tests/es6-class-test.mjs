@@ -1,4 +1,4 @@
-import { LogLevelMixin } from '../src/loglevel-mixin';
+import { LogLevelMixin } from '../src/loglevel-mixin.mjs';
 
 import test from 'ava';
 
