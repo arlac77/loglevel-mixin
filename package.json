@@ -48,11 +48,9 @@
   "homepage": "https://github.com/arlac77/loglevel-mixin#readme",
   "ava": {
     "files": [
-      "tests/*-test.js",
       "tests/*-test.mjs"
     ],
     "extensions": [
-      "js",
       "mjs"
     ],
     "require": [
