@@ -37,7 +37,7 @@ test('makeLogEvent overwrite timestamp', t => {
     timestamp: 1234,
     message: 'the message'
   });
-  t.is(le.timestamp, 1234, 100);
+  t.is(le.timestamp, 1234);
   t.is(le.level, 'error');
   t.is(le.message, 'the message');
 });
