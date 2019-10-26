@@ -209,24 +209,26 @@ export function defineLogLevelProperties(
 /**
  * Helper function to aggregate values into a log event
  * @param {string} level log level
- * @param {string|Object} arg original log message - level and timestamp may be overwritten
+ * @param {string|Object} arg original log message - level may be overwritten
  * @param {Object} [args] additional values to be merged into the final log event - values have precedence
  * @return {Object} suitable for log event processing
  */
 export function makeLogEvent(level, arg, args) {
-  const logevent = {
-    timestamp: Date.now(),
-    level
-  };
 
   if (typeof arg === 'string') {
-    logevent.message = arg;
-    return Object.assign(logevent, args);
+    return { level, message: arg, ...args };
   } else {
     if (arg === undefined) {
-      return Object.assign(logevent, args);
+      return {
+        level,
+        ...args
+      };
     }
 
+    const logevent = {
+      level
+    };
+  
     if (arg instanceof Error) {
       mapError(logevent, arg);
     } else if (arg.error instanceof Error) {

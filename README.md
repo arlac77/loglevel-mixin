@@ -16,6 +16,7 @@
 
 Injects methods named after a set of logLevels which are only forwarding messages. If the current logLevel is higher or equal to the logLevel the name of the called method reflects.
 
+So the model object itself can be used as a logger and the log level is directly attaches to the model
 # usage
 
 <!-- skip-example -->
@@ -218,7 +219,7 @@ Helper function to aggregate values into a log event
 ### Parameters
 
 -   `level` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** log level
--   `arg` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object))** original log message - level and timestamp may be overwritten
+-   `arg` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object))** original log message - level may be overwritten
 -   `args` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** additional values to be merged into the final log event - values have precedence
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** suitable for log event processing

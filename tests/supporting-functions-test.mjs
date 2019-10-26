@@ -8,14 +8,12 @@ function sameDate(a, b) {
 
 test('makeLogEvent plain', t => {
   const le = makeLogEvent('error', 'the message');
-  t.truthy(sameDate(Date.now(), le.timestamp));
   t.is(le.level, 'error');
   t.is(le.message, 'the message');
 });
 
 test('makeLogEvent empty', t => {
   const le = makeLogEvent('error');
-  t.truthy(sameDate(le.timestamp, Date.now()));
   t.is(le.level, 'error');
   t.is(le.message, undefined);
 });
@@ -46,7 +44,6 @@ test('makeLogEvent with additional object', t => {
   const le = makeLogEvent('error', 'the message', {
     key1: 'value1'
   });
-  t.truthy(sameDate(le.timestamp, Date.now()));
   t.is(le.level, 'error');
   t.is(le.message, 'the message');
   t.is(le.key1, 'value1');
@@ -66,7 +63,6 @@ test('makeLogEvent with additional object deepth', t => {
     }
   );
 
-  t.truthy(sameDate(le.timestamp, Date.now()));
   t.is(le.level, 'error');
   t.is(le.message, 'the message');
   t.is(le.key1, 'value1');
