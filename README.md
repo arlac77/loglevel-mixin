@@ -17,6 +17,7 @@
 Injects methods named after a set of logLevels which are only forwarding messages. If the current logLevel is higher or equal to the logLevel the name of the called method reflects.
 
 So the model object itself can be used as a logger and the log level is directly attaches to the model
+
 # usage
 
 <!-- skip-example -->
@@ -25,8 +26,8 @@ So the model object itself can be used as a logger and the log level is directly
 import { defineLogLevelProperties, defineLoggerMethods } from 'loglevel-mixin';
 
 let someObject = {
-  log(level, message) {
-    console.log(`${level} ${message}`);
+  log(severity, message) {
+    console.log(`${severity} ${message}`);
   }
 };
 
@@ -35,11 +36,11 @@ defineLogLevelProperties(someObject);
 
 someObject.logLevel = 'error';
 someObject.info(
-  level => 'my info message (not reported since logLevel is error)'
+  severity => 'my info message (not reported since logLevel is error)'
 );
 someObject.logLevel = 'info';
 someObject.info(
-  level => 'my info message (reported since logLevel is now info)'
+  severity => 'my info message (reported since logLevel is now info)'
 );
 ```
 
@@ -62,11 +63,11 @@ const someObject = new LoggingEnabledClass();
 
 someObject.logLevel = 'error';
 someObject.info(
-  level => 'my info message (not reported since logLevel is error)'
+  severity => 'my info message (not reported since logLevel is error)'
 );
 someObject.logLevel = 'info';
 someObject.info(
-  level => 'my info message (reported since logLevel is now info)'
+  severity => 'my info message (reported since logLevel is now info)'
 );
 ```
 
@@ -218,7 +219,7 @@ Helper function to aggregate values into a log event
 
 ### Parameters
 
--   `level` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** log level
+-   `severity` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** log severity
 -   `arg` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object))** original log message - level may be overwritten
 -   `args` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** additional values to be merged into the final log event - values have precedence
 

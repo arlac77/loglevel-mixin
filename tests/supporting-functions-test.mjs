@@ -2,10 +2,6 @@ import { makeLogEvent } from '../src/loglevel-mixin.mjs';
 
 import test from 'ava';
 
-function sameDate(a, b) {
-  return (a > b ? a - b : b - a) < 100;
-}
-
 test('makeLogEvent plain', t => {
   const le = makeLogEvent('error', 'the message');
   t.is(le.severity, 'error');
