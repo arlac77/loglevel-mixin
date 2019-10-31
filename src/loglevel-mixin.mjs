@@ -208,25 +208,25 @@ export function defineLogLevelProperties(
 
 /**
  * Helper function to aggregate values into a log event
- * @param {string} level log level
+ * @param {string} severity log severity
  * @param {string|Object} arg original log message - level may be overwritten
  * @param {Object} [args] additional values to be merged into the final log event - values have precedence
  * @return {Object} suitable for log event processing
  */
-export function makeLogEvent(level, arg, args) {
+export function makeLogEvent(severity, arg, args) {
 
   if (typeof arg === 'string') {
-    return { level, message: arg, ...args };
+    return { severity, message: arg, ...args };
   } else {
     if (arg === undefined) {
       return {
-        level,
+        severity,
         ...args
       };
     }
 
     const logevent = {
-      level
+      severity
     };
   
     if (arg instanceof Error) {

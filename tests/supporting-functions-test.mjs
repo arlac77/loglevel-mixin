@@ -8,13 +8,13 @@ function sameDate(a, b) {
 
 test('makeLogEvent plain', t => {
   const le = makeLogEvent('error', 'the message');
-  t.is(le.level, 'error');
+  t.is(le.severity, 'error');
   t.is(le.message, 'the message');
 });
 
 test('makeLogEvent empty', t => {
   const le = makeLogEvent('error');
-  t.is(le.level, 'error');
+  t.is(le.severity, 'error');
   t.is(le.message, undefined);
 });
 
@@ -36,7 +36,7 @@ test('makeLogEvent overwrite timestamp', t => {
     message: 'the message'
   });
   t.is(le.timestamp, 1234);
-  t.is(le.level, 'error');
+  t.is(le.severity, 'error');
   t.is(le.message, 'the message');
 });
 
@@ -44,7 +44,7 @@ test('makeLogEvent with additional object', t => {
   const le = makeLogEvent('error', 'the message', {
     key1: 'value1'
   });
-  t.is(le.level, 'error');
+  t.is(le.severity, 'error');
   t.is(le.message, 'the message');
   t.is(le.key1, 'value1');
 });
@@ -63,7 +63,7 @@ test('makeLogEvent with additional object deepth', t => {
     }
   );
 
-  t.is(le.level, 'error');
+  t.is(le.severity, 'error');
   t.is(le.message, 'the message');
   t.is(le.key1, 'value1');
   t.is(le.key2, 'value2');
