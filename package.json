@@ -1,10 +1,11 @@
 {
   "name": "loglevel-mixin",
   "version": "0.0.0-semantic-release",
-  "type": "module",
   "publishConfig": {
     "access": "public"
   },
+  "sideEffects": false,
+  "type": "module",
   "main": "src/loglevel-mixin.mjs",
   "module": "src/loglevel-mixin.mjs",
   "description": "mixin to declare logging methods named after a set of log levels",
@@ -63,6 +64,5 @@
     "repository": {
       "url": "https://github.com/arlac77/npm-package-template-esm-only.git"
     }
-  },
-  "sideEffects": false
+  }
 }
