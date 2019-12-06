@@ -21,14 +21,14 @@
  * - alert
  */
 export const defaultLogLevels = declareLevels([
-  'trace',
-  'debug',
-  'info',
-  'notice',
-  'warn',
-  'error',
-  'crit',
-  'alert'
+  "trace",
+  "debug",
+  "info",
+  "notice",
+  "warn",
+  "error",
+  "crit",
+  "alert"
 ]);
 
 /**
@@ -37,18 +37,8 @@ export const defaultLogLevels = declareLevels([
  * @return {Object} levels object a hash with all the loglevels. Stored by there name.
  */
 export function declareLevels(list) {
-  const levels = {};
   let priority = list.length;
-
-  list.forEach(name => {
-    levels[name] = {
-      name,
-      priority
-    };
-    priority -= 1;
-  });
-
-  return levels;
+  return Object.fromEntries(list.map(name => [name, {name, priority:priority--}]));
 }
 
 /**
@@ -84,7 +74,7 @@ export function defineLoggerMethods(
               if (this.logLevelPriority >= myLevel) {
                 this.log(
                   levelName,
-                  typeof providerFunction === 'function'
+                  typeof providerFunction === "function"
                     ? providerFunction(levelName)
                     : providerFunction
                 );
@@ -95,7 +85,7 @@ export function defineLoggerMethods(
                 theFunction.call(
                   this,
                   levelName,
-                  typeof providerFunction === 'function'
+                  typeof providerFunction === "function"
                     ? providerFunction(levelName)
                     : providerFunction
                 );
@@ -111,7 +101,7 @@ export function defineLoggerMethods(
 /**
  * symbol holding the actual logLevel inside of the target object
  */
-const LOGLEVEL = Symbol('loglevel');
+const LOGLEVEL = Symbol("loglevel");
 
 /**
  * <!-- skip-example -->
@@ -214,8 +204,7 @@ export function defineLogLevelProperties(
  * @return {Object} suitable for log event processing
  */
 export function makeLogEvent(severity, arg, args) {
-
-  if (typeof arg === 'string') {
+  if (typeof arg === "string") {
     return { severity, message: arg, ...args };
   } else {
     if (arg === undefined) {
@@ -228,7 +217,7 @@ export function makeLogEvent(severity, arg, args) {
     const logevent = {
       severity
     };
-  
+
     if (arg instanceof Error) {
       mapError(logevent, arg);
     } else if (arg.error instanceof Error) {
