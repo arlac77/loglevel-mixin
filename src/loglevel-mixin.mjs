@@ -64,14 +64,13 @@ export function defineLoggerMethods(
 ) {
   const properties = {};
 
-  Object.keys(logLevels).forEach(level => {
-    const myLevel = logLevels[level].priority;
-    const levelName = level;
+  Object.keys(logLevels).forEach(levelName => {
+    const priority = logLevels[levelName].priority;
     properties[levelName] = {
       value:
         theFunction === undefined
           ? function(providerFunction) {
-              if (this.logLevelPriority >= myLevel) {
+              if (this.logLevelPriority >= priority) {
                 this.log(
                   levelName,
                   typeof providerFunction === "function"
@@ -81,7 +80,7 @@ export function defineLoggerMethods(
               }
             }
           : function(providerFunction) {
-              if (this.logLevelPriority >= myLevel) {
+              if (this.logLevelPriority >= priority) {
                 theFunction.call(
                   this,
                   levelName,
@@ -126,13 +125,7 @@ export function LogLevelMixin(
   defaultLogLevel = defaultLogLevels.info
 ) {
   const newClass = class extends superclass {
-    /**
-     * set the log level to the default
-     */
-    constructor(...args) {
-      super(...args);
-      this[LOGLEVEL] = defaultLogLevel;
-    }
+    [LOGLEVEL] = defaultLogLevel;
 
     /**
      * @return {string} name of the current log level
