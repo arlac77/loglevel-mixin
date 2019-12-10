@@ -38,7 +38,9 @@ export const defaultLogLevels = declareLevels([
  */
 export function declareLevels(list) {
   let priority = list.length;
-  return Object.fromEntries(list.map(name => [name, {name, priority:priority--}]));
+  return Object.fromEntries(
+    list.map(name => [name, { name, priority: priority-- }])
+  );
 }
 
 /**
@@ -60,41 +62,45 @@ export function declareLevels(list) {
 export function defineLoggerMethods(
   object,
   logLevels = defaultLogLevels,
-  theFunction = undefined
+  theFunction
 ) {
-  const properties = {};
-
-  Object.keys(logLevels).forEach(levelName => {
-    const priority = logLevels[levelName].priority;
-    properties[levelName] = {
-      value:
-        theFunction === undefined
-          ? function(providerFunction) {
-              if (this.logLevelPriority >= priority) {
-                this.log(
-                  levelName,
-                  typeof providerFunction === "function"
-                    ? providerFunction(levelName)
-                    : providerFunction
-                );
-              }
-            }
-          : function(providerFunction) {
-              if (this.logLevelPriority >= priority) {
-                theFunction.call(
-                  this,
-                  levelName,
-                  typeof providerFunction === "function"
-                    ? providerFunction(levelName)
-                    : providerFunction
-                );
-              }
-            },
-      enumerable: true
-    };
-  });
-
-  Object.defineProperties(object, properties);
+  Object.defineProperties(
+    object,
+    Object.fromEntries(
+      Object.entries(logLevels).map(([name, level]) => {
+        const priority = level.priority;
+        return [
+          name,
+          {
+            value:
+              theFunction === undefined
+                ? function(providerFunction) {
+                    if (this.logLevelPriority >= priority) {
+                      this.log(
+                        name,
+                        typeof providerFunction === "function"
+                          ? providerFunction(name)
+                          : providerFunction
+                      );
+                    }
+                  }
+                : function(providerFunction) {
+                    if (this.logLevelPriority >= priority) {
+                      theFunction.call(
+                        this,
+                        name,
+                        typeof providerFunction === "function"
+                          ? providerFunction(name)
+                          : providerFunction
+                      );
+                    }
+                  },
+            enumerable: true
+          }
+        ];
+      })
+    )
+  );
 }
 
 /**
@@ -125,7 +131,11 @@ export function LogLevelMixin(
   defaultLogLevel = defaultLogLevels.info
 ) {
   const newClass = class extends superclass {
-    [LOGLEVEL] = defaultLogLevel;
+
+    constructor(...args) {
+      super(...args);
+      this[LOGLEVEL] = defaultLogLevel;
+    }
 
     /**
      * @return {string} name of the current log level

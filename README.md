@@ -158,7 +158,7 @@ For each loglevel a method with the name of the log level will be created.
 -   `theFunction` **[Logger](#logger)** to be added under the loglevel name.
            This function will only be called if the current loglevel is greater equal
            the log level of the called logging function.
-           By default a method log(level,message) will be used (optional, default `undefined`)
+           By default a method log(level,message) will be used
 
 ### Examples
 
