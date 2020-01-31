@@ -1,0 +1,10 @@
+{
+  "name": "loglevel-mixin",
+  "description": "mixin to declare logging methods named after a set of log levels",
+  "icons": [
+    {
+      "src": "facicon.ico",
+      "sizes": "16x16"
+    }
+  ]
+}
