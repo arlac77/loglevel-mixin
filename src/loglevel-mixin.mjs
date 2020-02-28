@@ -114,7 +114,7 @@ const LOGLEVEL = Symbol("loglevel");
  * @classdesc This function is a mixin for ES2015 classes.
  * @param {class} superclass class to be extendet
  * @param {Object} logLevels Object with all the available loglevels. Stored by their name
- * @param {string} defaultLogLevel the default value for the logLevel property
+ * @param {string} initialLogLevel the default value for the logLevel property
  * @return {class} newly created class ready to be further extendet/used
  * @example
  * import { LogLevelMixin } = from 'loglevel-mixin';
@@ -128,13 +128,13 @@ const LOGLEVEL = Symbol("loglevel");
 export function LogLevelMixin(
   superclass,
   logLevels = defaultLogLevels,
-  defaultLogLevel = defaultLogLevels.info
+  initialLogLevel = defaultLogLevels.info
 ) {
   const newClass = class extends superclass {
 
     constructor(...args) {
       super(...args);
-      this[LOGLEVEL] = defaultLogLevel;
+      this[LOGLEVEL] = initialLogLevel;
     }
 
     /**
@@ -150,7 +150,7 @@ export function LogLevelMixin(
      * @param {string} level
      */
     set logLevel(level) {
-      this[LOGLEVEL] = logLevels[level] || defaultLogLevel;
+      this[LOGLEVEL] = logLevels[level] || initialLogLevel;
     }
 
     /**
@@ -172,14 +172,14 @@ export function LogLevelMixin(
  *
  * @param {Object} object target where the properties will be written into
  * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
- * @param {string} defaultLogLevel the default value for the properties
+ * @param {string} initialLogLevel the default value for the properties
  */
 export function defineLogLevelProperties(
   object,
   logLevels = defaultLogLevels,
-  defaultLogLevel = defaultLogLevels.info
+  initialLogLevel = defaultLogLevels.info
 ) {
-  let logLevel = defaultLogLevel;
+  let logLevel = initialLogLevel;
 
   Object.defineProperties(object, {
     logLevel: {
@@ -187,7 +187,7 @@ export function defineLogLevelProperties(
         return logLevel.name;
       },
       set(level) {
-        logLevel = logLevels[level] || defaultLogLevel;
+        logLevel = logLevels[level] || initialLogLevel;
       }
     },
 

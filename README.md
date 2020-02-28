@@ -183,7 +183,7 @@ symbol holding the actual logLevel inside of the target object
 
 -   `superclass` **class** class to be extendet
 -   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Object with all the available loglevels. Stored by their name (optional, default `defaultLogLevels`)
--   `defaultLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the logLevel property (optional, default `defaultLogLevels.info`)
+-   `initialLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the logLevel property (optional, default `defaultLogLevels.info`)
 
 ### Examples
 
@@ -206,7 +206,7 @@ Declares two properties:
 
 -   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where the properties will be written into
 -   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
--   `defaultLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the properties (optional, default `defaultLogLevels.info`)
+-   `initialLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the properties (optional, default `defaultLogLevels.info`)
 
 ### Properties
 
