@@ -7,7 +7,6 @@
   "sideEffects": false,
   "type": "module",
   "main": "src/loglevel-mixin.mjs",
-  "module": "src/loglevel-mixin.mjs",
   "description": "mixin to declare logging methods named after a set of log levels",
   "keywords": [
     "loglevel",
