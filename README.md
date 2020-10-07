@@ -20,32 +20,6 @@ So the model object itself can be used as a logger and the log level is directly
 <!-- skip-example -->
 
 ```javascript
-import { defineLogLevelProperties, defineLoggerMethods } from 'loglevel-mixin';
-
-let someObject = {
-  log(severity, message) {
-    console.log(`${severity} ${message}`);
-  }
-};
-
-defineLoggerMethods(someObject);
-defineLogLevelProperties(someObject);
-
-someObject.logLevel = 'error';
-someObject.info(
-  severity => 'my info message (not reported since logLevel is error)'
-);
-someObject.logLevel = 'info';
-someObject.info(
-  severity => 'my info message (reported since logLevel is now info)'
-);
-```
-
-## works for ES2015 classes to
-
-<!-- skip-example -->
-
-```javascript
 import { LogLevelMixin } from 'loglevel-mixin';
 
 const LoggingEnabledClass = LogLevelMixin(

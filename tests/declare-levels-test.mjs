@@ -1,6 +1,5 @@
-import { declareLevels } from "../src/loglevel-mixin.mjs";
-
 import test from "ava";
+import { declareLevels } from "loglevel-mixin";
 
 test("declareLevels", t => {
   t.deepEqual(declareLevels(["a", "b", "c"]), {

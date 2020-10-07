@@ -166,40 +166,6 @@ export function LogLevelMixin(
 }
 
 /**
- * Declares two properties:
- * @property {string} logLevel `info`,`error`,...
- * @property {number} logLevelPriority
- *
- * @param {Object} object target where the properties will be written into
- * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
- * @param {string} initialLogLevel the default value for the properties
- */
-export function defineLogLevelProperties(
-  object,
-  logLevels = defaultLogLevels,
-  initialLogLevel = defaultLogLevels.info
-) {
-  let logLevel = initialLogLevel;
-
-  Object.defineProperties(object, {
-    logLevel: {
-      get() {
-        return logLevel.name;
-      },
-      set(level) {
-        logLevel = logLevels[level] || initialLogLevel;
-      }
-    },
-
-    logLevelPriority: {
-      get() {
-        return logLevel.priority;
-      }
-    }
-  });
-}
-
-/**
  * Helper function to aggregate values into a log event
  * @param {string} severity log severity
  * @param {string|Object} arg original log message - level may be overwritten
