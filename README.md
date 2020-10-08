@@ -70,11 +70,8 @@ npm install loglevel-mixin
 -   [LogLevelMixin](#loglevelmixin)
     -   [Parameters](#parameters-2)
     -   [Examples](#examples-1)
--   [defineLogLevelProperties](#defineloglevelproperties)
-    -   [Parameters](#parameters-3)
-    -   [Properties](#properties-2)
 -   [makeLogEvent](#makelogevent)
-    -   [Parameters](#parameters-4)
+    -   [Parameters](#parameters-3)
 
 ## Logger
 
@@ -168,21 +165,6 @@ class LoggingEnabledClass extends LogLevelMixin(BaseClass) {
 ```
 
 Returns **class** newly created class ready to be further extendet/used
-
-## defineLogLevelProperties
-
-Declares two properties:
-
-### Parameters
-
--   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where the properties will be written into
--   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
--   `initialLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the properties (optional, default `defaultLogLevels.info`)
-
-### Properties
-
--   `logLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** `info`,`error`,...
--   `logLevelPriority` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## makeLogEvent
 
