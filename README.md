@@ -3,7 +3,7 @@
 [![minified size](https://badgen.net/bundlephobia/min/loglevel-mixin)](https://bundlephobia.com/result?p=loglevel-mixin)
 [![downloads](http://img.shields.io/npm/dm/loglevel-mixin.svg?style=flat-square)](https://npmjs.org/package/loglevel-mixin)
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/loglevel-mixin.svg?style=flat-square)](https://github.com/arlac77/loglevel-mixin/issues)
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Farlac77%2Floglevel-mixin%2Fbadge&style=flat)](https://actions-badge.atrox.dev/arlac77/loglevel-mixin/goto)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Farlac77%2Floglevel-mixin%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/arlac77/loglevel-mixin/goto)
 [![Styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Known Vulnerabilities](https://snyk.io/test/github/arlac77/loglevel-mixin/badge.svg)](https://snyk.io/test/github/arlac77/loglevel-mixin)
@@ -56,22 +56,22 @@ npm install loglevel-mixin
 
 ### Table of Contents
 
--   [Logger](#logger)
-    -   [Properties](#properties)
--   [Loglevel](#loglevel)
-    -   [Properties](#properties-1)
--   [defaultLogLevels](#defaultloglevels)
--   [declareLevels](#declarelevels)
-    -   [Parameters](#parameters)
--   [defineLoggerMethods](#defineloggermethods)
-    -   [Parameters](#parameters-1)
-    -   [Examples](#examples)
--   [LOGLEVEL](#loglevel-1)
--   [LogLevelMixin](#loglevelmixin)
-    -   [Parameters](#parameters-2)
-    -   [Examples](#examples-1)
--   [makeLogEvent](#makelogevent)
-    -   [Parameters](#parameters-3)
+*   [Logger](#logger)
+    *   [Properties](#properties)
+*   [Loglevel](#loglevel)
+    *   [Properties](#properties-1)
+*   [defaultLogLevels](#defaultloglevels)
+*   [declareLevels](#declarelevels)
+    *   [Parameters](#parameters)
+*   [defineLoggerMethods](#defineloggermethods)
+    *   [Parameters](#parameters-1)
+    *   [Examples](#examples)
+*   [LOGLEVEL](#loglevel-1)
+*   [LogLevelMixin](#loglevelmixin)
+    *   [Parameters](#parameters-2)
+    *   [Examples](#examples-1)
+*   [makeLogEvent](#makelogevent)
+    *   [Parameters](#parameters-3)
 
 ## Logger
 
@@ -79,7 +79,7 @@ Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Sta
 
 ### Properties
 
--   `entry` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+*   `entry` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
 
 ## Loglevel
 
@@ -87,21 +87,21 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### Properties
 
--   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
--   `priority` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+*   `name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+*   `priority` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 ## defaultLogLevels
 
 default log levels
 
--   trace
--   debug
--   info
--   notice
--   warn
--   error
--   crit
--   alert
+*   trace
+*   debug
+*   info
+*   notice
+*   warn
+*   error
+*   crit
+*   alert
 
 ## declareLevels
 
@@ -109,7 +109,7 @@ Generate the loglevel objects out of a list of log level names.
 
 ### Parameters
 
--   `list` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** A list of log level names. The last name in the list will become the one with the highest priority.
+*   `list` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** A list of log level names. The last name in the list will become the one with the highest priority.
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** levels object a hash with all the loglevels. Stored by there name.
 
@@ -122,12 +122,12 @@ For each loglevel a method with the name of the log level will be created.
 
 ### Parameters
 
--   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where to assign properties to
--   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
--   `theFunction` **[Logger](#logger)** to be added under the loglevel name.
-           This function will only be called if the current loglevel is greater equal
-           the log level of the called logging function.
-           By default a method log(level,message) will be used
+*   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where to assign properties to
+*   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
+*   `theFunction` **[Logger](#logger)** to be added under the loglevel name.
+    This function will only be called if the current loglevel is greater equal
+    the log level of the called logging function.
+    By default a method log(level,message) will be used
 
 ### Examples
 
@@ -149,9 +149,9 @@ symbol holding the actual logLevel inside of the target object
 
 ### Parameters
 
--   `superclass` **class** class to be extendet
--   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Object with all the available loglevels. Stored by their name (optional, default `defaultLogLevels`)
--   `initialLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the logLevel property (optional, default `defaultLogLevels.info`)
+*   `superclass` **class** class to be extendet
+*   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Object with all the available loglevels. Stored by their name (optional, default `defaultLogLevels`)
+*   `initialLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the logLevel property (optional, default `defaultLogLevels.info`)
 
 ### Examples
 
@@ -172,9 +172,9 @@ Helper function to aggregate values into a log event
 
 ### Parameters
 
--   `severity` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** log severity
--   `arg` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object))** original log message - level may be overwritten
--   `args` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** additional values to be merged into the final log event - values have precedence
+*   `severity` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** log severity
+*   `arg` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object))** original log message - level may be overwritten
+*   `args` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** additional values to be merged into the final log event - values have precedence
 
 Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** suitable for log event processing
 
