@@ -166,7 +166,7 @@ export function LogLevelMixin(
 }
 
 /**
- * Helper function to aggregate values into a log event
+ * Helper function to aggregate values into a log event.
  * @param {string} severity log severity
  * @param {string|Object} arg original log message - level may be overwritten
  * @param {Object} [args] additional values to be merged into the final log event - values have precedence
