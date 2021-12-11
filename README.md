@@ -168,7 +168,7 @@ Returns **class** newly created class ready to be further extendet/used
 
 ## makeLogEvent
 
-Helper function to aggregate values into a log event
+Helper function to aggregate values into a log event.
 
 ### Parameters
 
