@@ -74,24 +74,24 @@ export function defineLoggerMethods(
           {
             value:
               theFunction === undefined
-                ? function(providerFunction) {
+                ? function(arg,...args) {
                     if (this.logLevelPriority >= priority) {
                       this.log(
                         name,
-                        typeof providerFunction === "function"
-                          ? providerFunction(name)
-                          : providerFunction
+                        typeof arg === "function"
+                          ? arg(name)
+                          : arg, ...args
                       );
                     }
                   }
-                : function(providerFunction) {
+                : function(arg,...args) {
                     if (this.logLevelPriority >= priority) {
                       theFunction.call(
                         this,
                         name,
-                        typeof providerFunction === "function"
-                          ? providerFunction(name)
-                          : providerFunction
+                        typeof arg === "function"
+                          ? arg(name)
+                          : arg, ...args
                       );
                     }
                   },

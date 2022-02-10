@@ -3,9 +3,10 @@ import { LogLevelMixin } from "loglevel-mixin";
 
 class LoggingEnabledClass extends LogLevelMixin(
   class BaseClass {
-    log(level, message) {
+    log(level, ...args) {
       this.theLevel = level;
-      this.theValue = message;
+      this.arg = args[0];
+      this.args = args;
     }
   }
 ) {}
@@ -39,23 +40,30 @@ test("class default info not shared", t => {
   t.is(someObject.logLevel, "info");
 });
 
-test("class logging info passes", t => {
+test("class logging info cb passes", t => {
   const someObject = new LoggingEnabledClass();
   someObject.info(level => "info message");
-  t.is(someObject.theValue, "info message");
+  t.is(someObject.arg, "info message");
   t.is(someObject.theLevel, "info");
 });
 
-test("class logging error passes", t => {
+test("class logging info passes", t => {
+  const someObject = new LoggingEnabledClass();
+  someObject.info("a", "b", "c");
+  t.deepEqual(someObject.args, ["a", "b", "c"]);
+  t.is(someObject.theLevel, "info");
+});
+
+test("class logging error eb passes", t => {
   const someObject = new LoggingEnabledClass();
   someObject.error(level => "error message");
-  t.is(someObject.theValue, "error message");
+  t.is(someObject.arg, "error message");
   t.is(someObject.theLevel, "error");
 });
 
-test("class logging trace ignored", t => {
+test("class logging trace cb ignored", t => {
   const someObject = new LoggingEnabledClass();
   someObject.trace(level => "trace message");
-  t.is(someObject.theValue, undefined);
+  t.is(someObject.arg, undefined);
   t.is(someObject.theLevel, undefined);
 });
