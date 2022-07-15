@@ -1,6 +1,6 @@
 [![npm](https://img.shields.io/npm/v/loglevel-mixin.svg)](https://www.npmjs.com/package/loglevel-mixin)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-[![minified size](https://badgen.net/bundlephobia/min/loglevel-mixin)](https://bundlephobia.com/result?p=loglevel-mixin)
+[![Open Bundle](https://bundlejs.com/badge-light.svg)](https://bundlejs.com/?q=loglevel-mixin)
 [![downloads](http://img.shields.io/npm/dm/loglevel-mixin.svg?style=flat-square)](https://npmjs.org/package/loglevel-mixin)
 [![GitHub Issues](https://img.shields.io/github/issues/arlac77/loglevel-mixin.svg?style=flat-square)](https://github.com/arlac77/loglevel-mixin/issues)
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Farlac77%2Floglevel-mixin%2Fbadge\&style=flat)](https://actions-badge.atrox.dev/arlac77/loglevel-mixin/goto)
