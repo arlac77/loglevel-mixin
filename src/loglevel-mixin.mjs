@@ -74,24 +74,22 @@ export function defineLoggerMethods(
           {
             value:
               theFunction === undefined
-                ? function(arg,...args) {
+                ? function (arg, ...args) {
                     if (this.logLevelPriority >= priority) {
                       this.log(
                         name,
-                        typeof arg === "function"
-                          ? arg(name)
-                          : arg, ...args
+                        typeof arg === "function" ? arg(name) : arg,
+                        ...args
                       );
                     }
                   }
-                : function(arg,...args) {
+                : function (arg, ...args) {
                     if (this.logLevelPriority >= priority) {
                       theFunction.call(
                         this,
                         name,
-                        typeof arg === "function"
-                          ? arg(name)
-                          : arg, ...args
+                        typeof arg === "function" ? arg(name) : arg,
+                        ...args
                       );
                     }
                   },
@@ -131,7 +129,6 @@ export function LogLevelMixin(
   initialLogLevel = defaultLogLevels.info
 ) {
   const newClass = class extends superclass {
-
     constructor(...args) {
       super(...args);
       this[LOGLEVEL] = initialLogLevel;
