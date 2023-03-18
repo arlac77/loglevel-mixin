@@ -66,7 +66,6 @@ npm install loglevel-mixin
 *   [defineLoggerMethods](#defineloggermethods)
     *   [Parameters](#parameters-1)
     *   [Examples](#examples)
-*   [LOGLEVEL](#loglevel-1)
 *   [LogLevelMixin](#loglevelmixin)
     *   [Parameters](#parameters-2)
     *   [Examples](#examples-1)
@@ -138,10 +137,6 @@ obj.error('error entry'); // will redirect to theFunction if obj.loglevel is at 
 ```
 
 Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)**&#x20;
-
-## LOGLEVEL
-
-symbol holding the actual logLevel inside of the target object
 
 ## LogLevelMixin
 
