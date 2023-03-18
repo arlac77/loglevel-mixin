@@ -124,12 +124,7 @@ export function LogLevelMixin(
   initialLogLevel = defaultLogLevels.info
 ) {
   const newClass = class extends superclass {
-    #logLevel;
-    
-    constructor(...args) {
-      super(...args);
-      this.#logLevel = initialLogLevel;
-    }
+    #logLevel = initialLogLevel;
 
     /**
      * @return {string} name of the current log level
