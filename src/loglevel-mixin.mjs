@@ -49,7 +49,7 @@ export function declareLevels(list) {
  * For each loglevel a method with the name of the log level will be created.
  * @param {Object} object target where to assign properties to
  * @param {Object} logLevels Hash with all the available loglevels. Stored by there name
- * @param {Logger} theFunction to be added under the loglevel name.
+ * @param {Logger} [theFunction] to be added under the loglevel name.
  *        This function will only be called if the current loglevel is greater equal
  *        the log level of the called logging function.
  *        By default a method log(level,message) will be used
@@ -105,10 +105,10 @@ export function defineLoggerMethods(
  * <!-- skip-example -->
  * @class
  * @classdesc This function is a mixin for ES2015 classes.
- * @param {class} superclass class to be extendet
+ * @param {Object} superclass class to be extendet
  * @param {Object} logLevels Object with all the available loglevels. Stored by their name
- * @param {string} initialLogLevel the default value for the logLevel property
- * @return {class} newly created class ready to be further extendet/used
+ * @param {Loglevel} initialLogLevel the default value for the logLevel property
+ * @return {Object} newly created class ready to be further extendet/used
  * @example
  * import { LogLevelMixin } = from 'loglevel-mixin';
  * class BaseClass {
