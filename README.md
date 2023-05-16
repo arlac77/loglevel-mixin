@@ -123,7 +123,7 @@ For each loglevel a method with the name of the log level will be created.
 
 *   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where to assign properties to
 *   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
-*   `theFunction` **[Logger](#logger)** to be added under the loglevel name.
+*   `theFunction` **[Logger](#logger)?** to be added under the loglevel name.
     This function will only be called if the current loglevel is greater equal
     the log level of the called logging function.
     By default a method log(level,message) will be used
@@ -144,9 +144,9 @@ Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Referenc
 
 ### Parameters
 
-*   `superclass` **class** class to be extendet
+*   `superclass` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** class to be extendet
 *   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Object with all the available loglevels. Stored by their name (optional, default `defaultLogLevels`)
-*   `initialLogLevel` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** the default value for the logLevel property (optional, default `defaultLogLevels.info`)
+*   `initialLogLevel` **[Loglevel](#loglevel)** the default value for the logLevel property (optional, default `defaultLogLevels.info`)
 
 ### Examples
 
@@ -159,7 +159,7 @@ class LoggingEnabledClass extends LogLevelMixin(BaseClass) {
 }
 ```
 
-Returns **class** newly created class ready to be further extendet/used
+Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** newly created class ready to be further extendet/used
 
 ## makeLogEvent
 
