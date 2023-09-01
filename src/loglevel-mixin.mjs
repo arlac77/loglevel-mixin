@@ -173,7 +173,9 @@ export function makeLogEvent(severity, arg, args) {
     }
 
     const logevent = {
-      severity
+      severity,
+      ...arg,
+      ...args
     };
 
     if (arg instanceof Error) {
@@ -182,7 +184,7 @@ export function makeLogEvent(severity, arg, args) {
       mapError(logevent, arg.error);
     }
 
-    return Object.assign(logevent, arg, args);
+    return logevent;
   }
 }
 
