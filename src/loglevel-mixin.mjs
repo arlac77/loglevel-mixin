@@ -20,16 +20,16 @@
  * - crit
  * - alert
  */
-export const defaultLogLevels = declareLevels([
-  "trace",
-  "debug",
-  "info",
-  "notice",
-  "warn",
-  "error",
-  "crit",
-  "alert"
-]);
+export const defaultLogLevels = {
+  trace: { name: "trace", priority: 8 },
+  debug: { name: "debug", priority: 7 },
+  info: { name: "info", priority: 6 },
+  notice: { name: "notice", priority: 5 },
+  warn: { name: "warn", priority: 4 },
+  error: { name: "error", priority: 3 },
+  crit: { name: "crit", priority: 2 },
+  alert: { name: "alert", priority: 1 }
+};
 
 /**
  * Generate the loglevel objects out of a list of log level names.
