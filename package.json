@@ -5,13 +5,13 @@
     "access": "public",
     "provenance": true
   },
+  "types": "./dist/loglevel-mixin.d.mts",
   "exports": {
     ".": {
       "types": "./dist/loglevel-mixin.d.mts",
       "default": "./src/loglevel-mixin.mjs"
     }
   },
-  "types": "./dist/loglevel-mixin.d.mts",
   "description": "mixin to declare logging methods named after a set of log levels",
   "keywords": [
     "logging",
