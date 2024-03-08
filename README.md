@@ -137,7 +137,7 @@ obj.info('info entry'); // will redirect to theFunction if obj.loglevel is at le
 obj.error('error entry'); // will redirect to theFunction if obj.loglevel is at least error
 ```
 
-Returns **[undefined](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/undefined)**&#x20;
+Returns **void**&#x20;
 
 ## LogLevelMixin
 
@@ -172,7 +172,7 @@ Helper function to aggregate values into a log event.
 *   `arg` **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object))** original log message - level may be overwritten
 *   `args` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)?** additional values to be merged into the final log event - values have precedence
 
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** suitable for log event processing
+Returns **{message: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)}** } suitable for log event processing
 
 # license
 
