@@ -53,7 +53,7 @@ export function declareLevels(list) {
  *        This function will only be called if the current loglevel is greater equal
  *        the log level of the called logging function.
  *        By default a method log(level,message) will be used
- * @return {undefined}
+ * @return {void}
  * @example
  * defineLoggerMethods( obj)
  * obj.info('info entry'); // will redirect to theFunction if obj.loglevel is at least info
@@ -159,7 +159,7 @@ export function LogLevelMixin(
  * @param {string} severity log severity
  * @param {string|Object} arg original log message - level may be overwritten
  * @param {Object} [args] additional values to be merged into the final log event - values have precedence
- * @return {Object} suitable for log event processing
+ * @return {{message:string}}} suitable for log event processing
  */
 export function makeLogEvent(severity, arg, args) {
   if (typeof arg === "string") {
