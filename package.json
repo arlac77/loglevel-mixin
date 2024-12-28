@@ -8,8 +8,8 @@
   "types": "./types/loglevel-mixin.d.mts",
   "exports": {
     ".": {
-      "default": "./src/loglevel-mixin.mjs",
-      "types": "./types/loglevel-mixin.d.mts"
+      "types": "./types/loglevel-mixin.d.mts",
+      "default": "./src/loglevel-mixin.mjs"
     }
   },
   "description": "mixin to declare logging methods named after a set of log levels",
