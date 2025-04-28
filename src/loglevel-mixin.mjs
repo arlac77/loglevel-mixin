@@ -10,7 +10,7 @@
  */
 
 /**
- * default log levels
+ * Default log levels
  * - trace
  * - debug
  * - info
