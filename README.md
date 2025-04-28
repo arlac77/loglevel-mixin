@@ -92,7 +92,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ## defaultLogLevels
 
-default log levels
+Default log levels
 
 *   trace
 *   debug
