@@ -16,10 +16,11 @@ test("class default info", t => {
   t.is(someObject.logLevel, "info");
 });
 
-test("class set invalid fallback info", t => {
+test("class set invalid keep old loglevel", t => {
   const someObject = new LoggingEnabledClass();
+  someObject.logLevel = "trace";
   someObject.logLevel = "unknown";
-  t.is(someObject.logLevel, "info");
+  t.is(someObject.logLevel, "trace");
 });
 
 test("class set levels", t => {

@@ -59,11 +59,7 @@ export function declareLevels(list) {
  * obj.info('info entry'); // will redirect to theFunction if obj.loglevel is at least info
  * obj.error('error entry'); // will redirect to theFunction if obj.loglevel is at least error
  */
-export function defineLoggerMethods(
-  object,
-  logLevels = defaultLogLevels,
-  theFunction
-) {
+export function defineLoggerMethods(object, logLevels, theFunction) {
   Object.defineProperties(
     object,
     Object.fromEntries(
@@ -139,7 +135,11 @@ export function LogLevelMixin(
      * @param {string} level
      */
     set logLevel(level) {
-      this.#logLevel = logLevels[level] || initialLogLevel;
+      const logLevel = logLevels[level];
+
+      if (logLevel) {
+        this.#logLevel = logLevel;
+      }
     }
 
     /**
