@@ -122,7 +122,7 @@ For each loglevel a method with the name of the log level will be created.
 ### Parameters
 
 *   `object` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** target where to assign properties to
-*   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name (optional, default `defaultLogLevels`)
+*   `logLevels` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Hash with all the available loglevels. Stored by there name
 *   `theFunction` **[Logger](#logger)?** to be added under the loglevel name.
     This function will only be called if the current loglevel is greater equal
     the log level of the called logging function.
