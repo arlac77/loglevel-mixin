@@ -13,12 +13,13 @@
       "default": "./src/loglevel-mixin.mjs"
     }
   },
-  "description": "mixin to declare logging methods named after a set of log levels",
+  "description": "mixin to declare loglevel filter on target objects",
   "keywords": [
     "logging",
     "loglevel",
     "logs",
-    "mixin"
+    "mixin",
+    "filter
   ],
   "contributors": [
     {
