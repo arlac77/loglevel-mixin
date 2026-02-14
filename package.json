@@ -16,7 +16,9 @@
   "description": "mixin to declare logging methods named after a set of log levels",
   "keywords": [
     "logging",
-    "loglevel"
+    "loglevel",
+    "logs",
+    "mixin"
   ],
   "contributors": [
     {
