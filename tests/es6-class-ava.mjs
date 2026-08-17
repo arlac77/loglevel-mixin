@@ -14,6 +14,8 @@ class LoggingEnabledClass extends LogLevelMixin(
 test("class default info", t => {
   const someObject = new LoggingEnabledClass();
   t.is(someObject.logLevel, "info");
+  t.true(someObject.passingLogLevel("info"));
+  t.false(someObject.passingLogLevel("trace"));
 });
 
 test("class set invalid keep old loglevel", t => {

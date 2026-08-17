@@ -148,6 +148,15 @@ export function LogLevelMixin(
     get logLevelPriority() {
       return this.#logLevel.priority;
     }
+
+    /**
+     * Check if a given log level will pass throug.
+     * @param {string} level 
+     * @returns {boolean} true if level passes through
+     */
+    passingLogLevel(level) {
+      return this.logLevelPriority >= logLevels[level].priority;
+    }
   };
 
   defineLoggerMethods(newClass.prototype, logLevels);
